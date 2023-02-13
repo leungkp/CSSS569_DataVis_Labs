@@ -1,0 +1,477 @@
+---
+title: "CS&SS 569 Visualizing Data and Models"
+subtitle: "Lab 4: advanced ggplot2"
+author: "Brian Leung"
+institute: "Department of Political Science, UW"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: xaringan-themer.css
+    nature:
+      ratio: 21:9
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(fig.width = 12, message = FALSE, warning = FALSE, comment = "", cache = F)
+library(flipbookr)
+library(xaringan)
+source("https://students.washington.edu/kpleung/vis/theme_cavis.R")
+```
+
+## Introduction
+
+- Focus on small multiple in `ggplot2`
+
+--
+
+- Visualize many panels, or many models 
+
+--
+
+- When to use `facet_grid()` vs. `facet_wrap()`
+
+--
+
+- Use juxtaposition thoughtfully to facilitates comparison 
+
+--
+
+- Continue to exploit `scale_...()` and introduce new packages such as `ggstance`
+
+---
+
+## Many panels: Nobel prize winners
+
+- Dataset taken from this [#TidyTuesday](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-05-14) project
+
+--
+
+- Each row is an individual winner of Nobel Prize
+
+--
+
+- Key variables includes:
+
+variable | description
+--------| -----------
+prize_year	|Year that Nobel Prize was awarded
+category	|Field of study/category
+laureate_id	|ID assigned to each winner
+full_name	|name of the winner
+gender	|character	binary gender of the winner
+organization_country	|character	organization country
+prize_share	|Share eg 1 of 1, 1 of 2, 1 of 4, etc
+
+---
+
+`r chunk_reveal("nobel1", break_type = "auto", widths = c(90, 10), float = "top", title = "## Many panels: Nobel prize winners")`
+
+```{r "nobel1", include = FALSE}
+library(tidyverse)
+library(lubridate)
+library(RColorBrewer)
+library(ggrepel)
+library(ggstance)
+library(scales)
+
+nobel <- read_csv("data/nobel.csv")
+
+head(nobel)
+```
+
+---
+
+`r chunk_reveal("nobel2", break_type = "auto", widths = c(90, 10), float = "top", title = "## Many panels: Distribution of Nobel prize winners")`
+
+```{r "nobel2", include = FALSE}
+# select top 5 countries
+nobel %>%
+  count(organization_country) %>%
+  drop_na() %>%
+  slice_max(order_by = n, n = 5) %>%
+  pull(organization_country) ->
+  top5_country 
+```
+
+---
+
+`r chunk_reveal("nobel3", break_type = "auto", widths = c(90, 10), float = "top", title = "## Many panels: Distribution of Nobel prize winners")`
+
+```{r "nobel3", include = FALSE}
+# filter obs from top 5 countries; create date column
+nobel %>%
+  filter(organization_country %in% top5_country) %>%
+  mutate(prize_date = lubridate::ymd(paste0(prize_year, "-12-10"))) %>%
+  select(prize_year, prize_date, everything()) ->
+  nobel_top5c
+```
+
+---
+
+`r chunk_reveal("nobel4", omit = "#ROTATE", break_type = "auto", widths = c(50, 50), title = "## Distribution of Nobel prize winners w/ facet_grid()")`
+
+```{r "nobel4", include = FALSE}
+ggplot(nobel_top5c, aes(x = prize_date)) +
+  theme_cavis_hgrid +
+  facet_grid(category ~ organization_country) + #OMIT
+  facet_wrap(category ~ organization_country) + #ROTATE
+  facet_wrap(category ~ organization_country, nrow = 3) + #ROTATE
+  geom_histogram() + 
+  scale_x_date(                
+    date_labels = "%y'",       
+    date_breaks = "25 years"   
+  ) +                          
+  scale_y_continuous(          
+    breaks = seq(0, 9, by = 3),
+    expand = c(0, 0)           
+  ) +                          
+  labs(y = "Count", x = "Year of award")
+```
+
+---
+
+`r chunk_reveal("nobel4", omit = "#OMIT", break_type = "rotate", widths = c(50, 50), title = "## Distribution of Nobel prize winners w/ facet_wrap()")`
+
+---
+
+## Distribution of Nobel prize winners w/ facet_wrap()
+
+- But do you really need that many panels? 
+
+--
+
+- Problems of data sparsity and not easy comparison 
+
+--
+
+---
+
+`r chunk_reveal("nobel5a", break_type = "auto", widths = c(90, 10),  float = "top", title = "## Distribution of Nobel prize winners w/ facet_wrap()")`
+
+
+```{r "nobel5a", include = FALSE}
+nobel_top5c %>%
+  mutate(decade = prize_year %/% 10 * 10) %>%
+  group_by(decade, category, organization_country) %>%
+  count() %>%
+  filter(category != "Peace") ->
+  nobel_top5c_count
+```
+
+---
+
+`r chunk_reveal("nobel5b", break_type = "non_seq", widths = c(50, 50), title = "## Distribution of Nobel prize winners w/ facet_wrap()")`
+
+```{r "nobel5b", include = FALSE}
+ggplot(nobel_top5c_count, 
+       aes(x = decade, y = n, color = organization_country)) +
+  theme_cavis_hgrid +     
+  facet_wrap(~ category) +                         
+  geom_line() +   #BREAK2
+  scale_color_brewer(type = "qual", palette = 6, direction = -1) + #BREAK3
+  theme(legend.position = "top") +                 #BREAK4
+  geom_point(color = "white", size = 4) + #BREAK6
+  geom_point(size = 2) + #BREAK5
+  labs(x = "Decade", y = "Total number of awards (per decade)") #BREAK7
+```
+
+---
+
+`r chunk_reveal("nobel6", break_type = "auto", widths = c(90, 10), float = "top", title = "## Many panels: Time trend of shares of Nobel prize")`
+
+```{r "nobel6", include = FALSE}
+# some wrangling
+nobel %>%
+  mutate(prize_share2 = case_when(prize_share == "1/1" ~ 1,
+                                  prize_share == "1/2" ~ 1/2,
+                                  prize_share == "1/3" ~ 1/3,
+                                  prize_share == "1/4" ~ 1/4)) %>%
+  mutate(last_name = str_extract(full_name, "(?<=[ -])\\w+$")) ->
+  nobel2
+
+# get colors
+colors <- brewer.pal(n = 5, name = "Set1")
+blue <- colors[2]
+orange <- colors[5]
+```
+
+---
+
+`r chunk_reveal("nobel7", break_type = "auto", widths = c(50, 50), title = "## Many panels: Time trend of shares of Nobel prize")`
+
+```{r "nobel7", include = FALSE}
+nobel2 %>%
+  ggplot(aes(x = prize_year, y = prize_share2)) +
+  theme_cavis_hgrid +
+  facet_wrap(~ category) +
+  geom_point(aes(color = gender, shape = gender)) +
+  scale_color_manual(values = c(orange, blue)) +
+  scale_shape_manual(values = c(19, 1)) +
+  geom_smooth(method = "gam", color = "grey15",
+              alpha = 0.25, size = 0.5) +
+  scale_y_continuous(breaks = c(1/4, 1/3, 1/2, 1), 
+                     labels = c("1/4", "1/3", "1/2", "1")) +
+  theme(legend.position = "top") +
+  labs(y = "Avg prize share", x = "Year of award") +
+  geom_text_repel(
+    data = filter(nobel2, gender == "Female"),
+    aes(label = last_name), 
+    color = orange, size = 2.5
+  ) 
+```
+
+---
+
+`r chunk_reveal("nobel8", break_type = "auto", widths = c(90, 10), float = "top", title = "## Many panels: Time trend of shares of Nobel prize")`
+
+```{r "nobel8", include = FALSE}
+# coerce category in factor w/ customized levels
+nobel2 %>%
+  mutate(category = factor(category,
+                           levels = c("Chemistry", "Medicine", "Physics", "Economics", "Peace", "Literature"))) ->
+  nobel2
+
+# check level
+head(nobel2$category)
+```
+
+---
+
+`r chunk_reveal("nobel9", omit = "#ROTATE", break_type = "auto", widths = c(50, 50), title = "## Many panels: Time trend of shares of Nobel prize")`
+
+```{r "nobel9", include = FALSE}
+nobel2 %>% # `category` coerced to factor
+  ggplot(aes(x = prize_year, y = prize_share2)) +
+  theme_cavis_hgrid +
+  facet_wrap(~ category) + #OMIT
+  facet_wrap(~ category, scales = "free_x") + #ROTATE
+  facet_wrap(~ category, scales = "free_y") + #ROTATE
+  facet_wrap(~ category, scales = "free") +   #ROTATE
+  facet_wrap(~ category, scales = "free_x") + #ROTATE
+  geom_point(aes(color = gender, shape = gender)) +
+  scale_color_manual(values = c(orange, blue)) +
+  scale_shape_manual(values = c(19, 1)) +
+  geom_smooth(method = "gam", color = "grey15", 
+              alpha = 0.25, size = 0.5) +
+  scale_y_continuous(breaks = c(1/4, 1/3, 1/2, 1), 
+                     labels = c("1/4", "1/3", "1/2", "1")) +
+  theme(legend.position = "top") +
+  labs(y = "Avg prize share", x = "Year of award") 
+```
+
+---
+
+`r chunk_reveal("nobel9", omit = "#OMIT", break_type = "rotate", widths = c(50, 50), title = "## Many panels: Time trend of shares of Nobel prize")`
+
+
+---
+
+## Many panels: Measles in the US example
+
+- Data: Measles level 1 incidence (cases per 100,000 people)
+
+--
+
+- Coverage: 51 US states; 76 years (3,876 observations)
+
+--
+
+- Sometimes `facet_wrap()` is not necessarily the only, or the best option
+
+---
+
+`r chunk_reveal("measles1", break_type = "auto", widths = c(50, 50), title = "## Many panels: Measles in the US example")`
+
+```{r "measles1", include=FALSE}
+measles <- read_csv("data/measles.csv")
+
+ggplot(measles, aes(x = year, y = count)) +
+  theme_cavis_hgrid +
+  facet_wrap(~ state, nrow = 5) +
+  geom_line() 
+```
+
+---
+
+`r chunk_reveal("measles2", break_type = "auto", widths = c(90, 10), float = "top", title = "## Many panels: Measles in the US example")`
+
+```{r "measles2", include=FALSE}
+levels <- rev(c("0", "0-1", "1-10", "10-100", "100-500", "500-1000", ">1000"))
+
+# Make variables into factors
+measles %>%
+  mutate(year = factor(year),
+         state = factor(state),
+         countCat = factor(countCat, 
+                           levels = levels)) -> 
+  measles
+```
+
+---
+
+`r chunk_reveal("measles3", break_type = "auto", widths = c(50, 50), title = "## Many panels: Measles in the US example")`
+
+```{r "measles3", include=FALSE}
+ggplot(measles, aes(x = year, y = state, fill = countCat)) +
+  theme_cavis +
+  geom_tile(colour = "white", size = 0.25) +
+  scale_fill_brewer(palette = "YlGnBu", direction = -1, 
+                    na.value = "grey90") +
+  scale_x_discrete(expand = c(0, 0), 
+                   breaks = seq(1930, 2000, 10)) +
+  scale_y_discrete(expand = c(0, 0)) +
+  labs(y = NULL, x = NULL) +
+  theme(axis.text.y = element_text(size = 8),
+        axis.text.x = element_text(size = 8),
+        legend.key.height = unit(0.8, "cm"),
+        legend.key.width = unit(0.2, "cm"))
+```
+
+---
+
+## Many models: 1992 Presidential Election examples
+
+- Results are estimated from an ordered probit model  
+
+- Outcome: voting for Bush, Clinton, or Perot in 1992
+
+- Key variables: 
+
+variable | description
+--------| -----------
+vote92 | Vote choice (Bush, Clinton, or Perot)
+rlibcon | Ideological self-placement: (1 = very liberal; 7 = very conservative)
+nonwhite | 0 = white, 1 = nonwhite
+
+---
+
+`r chunk_reveal("election1", break_type = "auto", widths = c(90, 10), float = "top", title = "## Many models: 1992 Presidential Election example")`
+
+
+```{r "election1", include = FALSE}
+presVoteEV <- read_csv("data/presVoteEV.csv")
+
+presVoteEV %>%
+  mutate(
+    nonwhite = if_else(nonwhite == 1, "Non-white", "White"),
+    vote92 = factor(vote92, levels = c("Clinton", "Perot", "Bush"))
+  ) ->
+  presVoteEV
+```
+
+
+---
+
+`r chunk_reveal("election2", break_type = "auto", widths = c(50, 50), title = "## Many models: 1992 Presidential Election example")`
+
+```{r "election2", include = FALSE}
+ggplot(presVoteEV,
+       aes(x = rlibcon, y = pe, ymax = upper, ymin = lower)) +
+  theme_cavis_hgrid +
+  facet_grid(nonwhite ~ vote92) + 
+  geom_line() +
+  geom_ribbon(alpha = 0.25, linetype = 0) 
+```
+
+---
+
+`r chunk_reveal("election3", break_type = "auto", widths = c(50, 50), title = "## Many models: 1992 Presidential Election example")`
+
+```{r "election3", include = FALSE}
+ggplot(presVoteEV,
+       aes(x = rlibcon, y = pe, ymax = upper, ymin = lower,
+           color = nonwhite, fill = nonwhite)) +
+  theme_cavis_hgrid +
+  facet_grid(~ vote92) +
+  geom_line() +
+  scale_color_manual(values = c(orange, blue)) +
+  geom_ribbon(alpha = 0.25, linetype = 0, show.legend = FALSE) +
+  scale_fill_manual(values = c(0, blue)) +
+  geom_line(aes(y = upper, linetype = nonwhite)) +
+  geom_line(aes(y = lower, linetype = nonwhite)) +
+  scale_linetype_manual(values = c(2, 0)) +
+  scale_x_continuous(breaks = seq(1, 7, 2)) +
+  scale_y_continuous(labels = label_percent(), 
+                     breaks = seq(0, 1, 0.25),
+                     limits = c(0, 1), 
+                     expand = c(0, 0)) +
+  theme(legend.position = c(0.05, 0.15)) +
+  labs(y = "Predicted prob. of voting",
+       x = "Ideological self-placement")
+```
+
+---
+
+## Many models: Cy Young award examples 
+
+- Background: North American baseball pitchers from 1980 to 2002 competing for the Cy Young Award
+
+--
+
+- Outcome: binary; winning the Cy Young Award or not
+
+--
+
+- Results are estimated from logistic regression 
+
+--
+
+- Key variables: 
+
+variable | description
+--------| -----------
+   winpct      | Percentage of games which the pitcher personally won
+   era         | Number of runs the pitcher allows per 9 innings
+   strikeout   | Number of strikeouts the pitcher collected over a season
+   innings     | Number of innings (periods) a pitcher played during the season
+   walks       | Number of walks the pitcher collected over a season
+   pe          | First difference in expected prob. of winning given some change in covariate
+  lower & upper| Lower & upper bound of the 95% confidence intervals
+
+---
+
+`r chunk_reveal("cyyoung1", break_type = "auto", widths = c(90, 10), float = "top", title = "## Many models: Cy Young award example")`
+
+```{r "cyyoung1", include = FALSE}
+cyYoungFD <- read_csv("data/cyyoungFD.csv")
+
+cyYoungFD %>%
+  pivot_longer(cols = pe_m1:upper_m2, names_to = "col_names", values_to = "value") %>%
+  separate(col_names, into = c("stat", "model"), sep = "_") %>%
+  pivot_wider(names_from = stat, values_from = value) %>%
+  mutate(signif = case_when(lower > 0 & upper > 0 ~ TRUE, 
+                            lower < 0 & upper < 0 ~ TRUE, 
+                            TRUE ~ FALSE)) -> 
+  cyYoungFD
+```
+
+---
+
+`r chunk_reveal("cyyoung2", break_type = "auto", widths = c(50, 50), title = "## Many models: Cy Young award example")`
+
+```{r "cyyoung2", include = FALSE}
+ggplot(cyYoungFD,
+       aes(y = fct_reorder(covariate, pe, .desc = TRUE),
+           x = pe, xmax = upper, xmin = lower,
+           color = model, shape = signif, fill = signif)) +
+  theme_cavis_vgrid +
+  geom_pointrangeh(position = position_dodge2v(height = 0.5)) +                                           
+  scale_colour_manual(values = c(blue, orange),
+                      labels = c("Model 1", "Model 2")) + 
+  scale_shape_manual(values = c(21, 19)) +        
+  scale_fill_manual(values = c("white", NA)) +    
+  guides(shape = "none", fill = "none") +         
+  scale_x_continuous(sec.axis = dup_axis(name = NULL),
+                     labels = label_percent()) +
+  theme(legend.position = c(0.125, 0.125)) +
+  labs(x = "Difference in predicted prob. in winning Cy Young", 
+       y = NULL)
+```
+
+

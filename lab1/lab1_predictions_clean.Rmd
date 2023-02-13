@@ -1,0 +1,307 @@
+---
+title: "Prediction and visualizing uncertainty: O-ring example"
+author: "Brian Leung"
+date: "`r Sys.Date()`"
+output:
+  pdf_document: default
+  word_document: default
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+
+# check if packages are installed; if not, install them
+packages <- c("tidyverse", "stargazer", "boot", "MASS", "marginaleffects", "cowplot")
+not_installed <- setdiff(packages, rownames(installed.packages()))
+if (length(not_installed)) install.packages(not_installed)
+
+# load packages
+library(tidyverse)
+library(stargazer)
+library(boot)
+library(marginaleffects)
+library(cowplot)
+# library(MASS) # don't load MASS package due to conflict w/ dplyr
+```
+
+## O-ring data
+
+```{r}
+# load data
+oring <- read_csv("https://www.openintro.org/data/csv/orings.csv")
+
+# some wrangling 
+
+```
+
+## A brief note on logistic regression
+
+Consider the following logistic regression where we predict the probability of o-ring being damaged using temperature as the predictor:
+
+$$
+\text{Pr(Damage|Temp)} = \text{logit}^{-1} (\beta_{0} + \beta_{1} \text{Temp})
+$$
+
+More generally, the *link function* that maps the linear predictor $X_{i} \beta$ to the probability $\pi_{i}$ is logit in logistic regression, which is a *non-linear* transformation. We usually prefer to work with the inverse logit. The scale on which we're working is crucial in prediction:
+
+$$
+\begin{split}
+\text{logit} (\pi_{i}) &= X_{i} \beta \\
+\pi_{i} &= \text{logit}^{-1} (X_{i} \beta)
+\end{split}
+$$
+\newpage
+
+## Logit model on O-ring data
+
+```{r}
+# logit model 
+
+# summary
+
+```
+
+```{r, results = "asis"}
+# regression table w/ stargazer 
+
+```
+
+\newpage
+
+## Why prediciton and visualization?
+
+Logistical regression, despite its apparent simplicity and ubiquity, is notoriously hard to interpret directly:
+
+-   Logit link function: For every unit increase in $x_{k}$, the log-odds ratio increases by $\beta_{k}$ (???)
+    -   Exponentiation helps a bit, but not much...: For every unit increase in $x_{k}$, the odds ratio increases by $e^{\beta_{k}}$
+-   Non-linear nature of the link function: for models with multiple predictors, you can't directly interpret a single parameter
+    -   The slope on the logistic curve depends on your starting position
+-   Probabilities are much more interpretable and substantively meaningful
+-   But the problem of incorporating uncertainty into your prediction (e.g. computing confidence intervals)
+
+## Prediction w/ logit model
+
+```{r}
+# create hypothetical values for temperature
+
+# predict prob of damage; be mindful of scale 
+
+# check the relationship b/w link and response
+
+# merge prediction w/ hypo values
+
+# visualize w/ ggplot2
+
+```
+
+What is missing from the graph?
+
+\newpage
+
+## Confidence intervals: case of linear regression
+
+```{r}
+# use linear regression instead
+
+# visualize 
+
+```
+
+\newpage
+
+## Confidence intervals: case of logit regression (or other GLMs)
+
+```{r}
+# predict doesn't work with glm objects in terms of calculating CIs
+
+```
+
+\newpage
+
+## Computing CIs for logit: inverse link function
+
+```{r}
+# prediction on logit scale w/ standard errors
+
+# some wrangling
+
+# critical values for 95% and 67% CIs; ignore problem of small-n for simplicity
+
+# manually compute CIs: transform linear predictor back to probability via inverse logit 
+# visualize w/ ggplot2 
+
+```
+
+\newpage
+
+## Computing CIs for logit: simulation method via MASS::mvrnorm()
+
+Consult Chris's lecture on [Maximum Likelihood](https://faculty.washington.edu/cadolph/mle/topic3.p.pdf) for better reference.
+
+Let's take a step back and think about `predict()` function: how does it calculate the predicted probability?
+
+You can do it by hand. Quick example:
+
+Let's say we want to know the probability of damage given that temperature is 50 degree. We know that the intercept coefficient is 15.0429 and the temperature coefficient is -0.2322.
+
+$$
+\begin{split}
+\pi_{t=50} &= \text{logit}^{-1} (15.0429 \times 1 + -0.2322 \times 50) \\ 
+&\approx 0.9687
+\end{split}
+$$
+
+We can check the result with `predict()`
+
+```{r}
+
+```
+
+But the problem is that we treat the estimated coefficients as certain and fail to *propagate uncertainty* from our estimation
+
+How can we propagate uncertainty to our prediction? Counterfactual simulation!
+
+Basic logic of counterfactual simulation:
+
+1.  Choose a set of counterfactual value for $x_{c}$
+2.  Estimate the model and obtain the parameter vector, $\hat{\beta}$, and its variance covariance matrix, $\hat{V}(\hat{\beta})$
+3.  Draw $\tilde{\beta}$ from the multivariate normal $f_{MVN}(\hat{\beta}, \hat{V}(\hat{\beta}))$
+4.  Calculate $\tilde{\pi_{c}} = \text{logit}^{-1} (x_{c} \tilde{\beta})$
+5.  Repeat the procedure many times, summarizing this vector to get expected values and confidence intervals
+
+```{r}
+# point estimate of the parameters
+
+# variance covariance of the parameters
+
+# set N of simulations
+
+# simulate many betas 
+
+```
+
+Each row represents one trial in the simulation; there are 10,000 simulations, hence 10,000 rows.
+
+Each column represents one simulated $\tilde{\beta}$; there are two parameters, hence 2 columns.
+
+They encapsulate the uncertainties in our estimation.
+
+Now we can calculate $\tilde{p_{c}}$ with matrix multiplication. To see this:
+
+$$
+\underbrace{
+  \begin{bmatrix}
+  \tilde{\pi_{1, 1}} & \tilde{\pi_{1, 2}} &\dots &\tilde{\pi_{1, n}} \\
+  \tilde{\pi_{2, 1}} & \tilde{\pi_{2, 2}} &\dots &\tilde{\pi_{2, n}} \\
+  \vdots & \vdots & \ddots & \vdots \\
+  \tilde{\pi_{k, 1}} & \tilde{\pi_{2, 2}} &\dots &\tilde{\pi_{k, n}} 
+  \end{bmatrix} 
+}_\text{k counterfactuals; n simulations}
+=
+\underbrace{
+  \begin{bmatrix}
+  1 & x_{c,1} \\
+  1 & x_{c,2} \\
+  \vdots & \vdots \\ 
+  1 & x_{c,k}
+  \end{bmatrix}
+}_\text{k counterfactural; 2 variables}
+\times
+\underbrace{
+  \begin{bmatrix}
+  \tilde{\beta_{0, 1}} & \tilde{\beta_{0, 2}} & \dots & \tilde{\beta_{0, n}} \\
+  \tilde{\beta_{1, 1}} & \tilde{\beta_{1, 2}} & \dots & \tilde{\beta_{1, n}} \\
+  \end{bmatrix}
+}_\text{2 parameters; n simulations}
+$$
+
+Intuitively, let's imagine there are $n = 10,000$ parallel universes, each of which is one simulation where $\tilde{\beta}$ exhibits some particular value (from a random MVN draw).
+
+In each parallel universe (simulation), you calculate the particular $\tilde{\pi}$ for each and every counterfactual temparature ${= \{20, 21, 22, \dots, 90\}}$. Essentially, you're repeating the manual calculation we've done above for $k = 71$ times.
+
+Then, you repeat the procedure for each and every parallel universe (simulation).
+
+You should get $n \times k = 10,000 \times 71$ different $\tilde{\pi}$
+
+```{r}
+# create hypothetical values for temp; plus constant
+
+# check dimensions: 71 
+
+# check dimensions for simulated betas
+
+# matrix multiplication 
+
+# check dimensions for simulated probabilities
+
+```
+
+```{r}
+# calculate expected values via mean()
+
+# calculate confidence intervals via quantile()
+
+# put everything together 
+
+# visualize w/ ggplot2
+
+```
+
+\newpage
+
+## Computing CIs for logit: marginaleffects package
+
+```{r}
+# use predictions() function from marginaleffects package
+
+# some wrangling
+
+# put everything together 
+
+# visualize w/ ggplot2
+
+```
+
+\newpage
+
+## Computing CIs for logit: compare all three methods
+
+```{r}
+# use plot_grid() function from cowplot
+
+```
+
+\newpage
+
+## Final remarks
+
+-   It's reassuring that all three methods produce equivalent results
+
+-   Hazards of over-relying on off-the-shelf functions or packages: opaque computation can produce unintended, or often wrong, results
+
+    -   Especially when your models become more complex and with more variables
+
+-   Manual simulations can be flexible: e.g. computing first difference and its uncertainties
+
+    -   Given a 10 degree increase in temperature, what is the change in probabilities in damage (and its uncertainties)
+    -   Also, a great conceptual check on your fundamental understanding of regression
+
+-   We didn't talk about how to improve the graphs visually
+
+    -   Ugly defaults; no annotation
+    -   Also, there are more to the inner working of `ggplot2`
+    -   After the lectures have covered more on scientific principles on visual displays, we'll return to this example
+
+## Knitting PDF
+
+You have to install `tinytex` before you can knit a PDF file. Run the following code. We'll talk about LaTeX next week. 
+
+
+```{r}
+# install.packages("tinytex")
+# tinytex::install_tinytex()
+```
+
+

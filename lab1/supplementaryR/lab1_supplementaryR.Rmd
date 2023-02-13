@@ -1,0 +1,783 @@
+---
+title: "CSSS 569 Visualizing Data and Models"
+subtitle: "Lab 1: Supplemental R resource"
+author: "Brian Leung"
+institute: "Department of Political Science, UW"
+date: \today
+output:
+  beamer_presentation:
+    incremental: yes
+bibliography: datavis.bib
+link-citations: yes
+linkcolor: blue
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(width=50)
+```
+
+
+# Useful \texttt{R} resources 
+- \texttt{R}
+   - *R for Data Science* [@grolemund_r_2016]
+   - *Quantitative Social Science : An Introduction* [@imai_quantitative_2017]
+   - DataCamp: <https://www.datacamp.com>
+   - R cheat sheets: <https://rstudio.com/resources/cheatsheets/>
+  
+- \texttt{R Markdown}
+   - *R Markdown: The Definitive Guide* [@xie_r_2019]
+  
+- Data visualization
+   - *Data Visualization: A Practical Introduction* [@healy_data_2018]
+   - *Fundamentals of Data Visualization: A Primer on Making Informative and Compelling Figures* [@wilke_fundamentals_2019]
+  
+- Others
+   - Stack Overflow: <https://stackoverflow.com>
+   - TidyTuesday Project: <https://github.com/rfordatascience/tidytuesday>
+  
+# \texttt{R} boot camp
+- \texttt{R} is a language and environment for statistical computing and graphics
+  - *Object-oriented* style of programming
+  - System-supplied or user-defined functionality as *functions*
+  - Extended via *packages*
+
+- \texttt{RStudio} is an integrated development environment for \texttt{R}, which includes:
+  - a console to run \texttt{R} code
+  - an editor to write code and text
+  - tools for plotting, history, debugging and workspace management
+
+- Let's open \texttt{RStudio} and a plain \texttt{R Script}
+
+# Running \texttt{R} code and operators
+
+\small
+```{r}
+# Arithmetic Operators
+1 + 1 
+
+2 * 8
+
+9 / 3
+
+2^3
+```
+
+# Running \texttt{R} code and operators
+
+\small
+```{r}
+# Relational Operators
+10 > 8
+
+7 <= 6
+
+(2 * 5) == 10
+
+1 != 2
+```
+
+# Objects in \texttt{R}: vectors and assignment
+
+\small
+```{r}
+# Concatenate vectors into a new vector
+c(1, 2, 3)
+
+# Assign them to a new object for manipulation
+x <- c(1, 2, 3)
+print(x) # or simply, x
+
+# Operators on vector
+x + 1
+
+x == 1
+```
+
+# Objects in \texttt{R}: vectors and functions
+
+\small
+```{r}
+# Use an object as input to a function
+x <- c(1, 2, 3)
+
+class(x)
+
+length(x)
+
+mean(x)
+```
+
+# Objects in \texttt{R}: three beginner tips
+1. Unless you assign (`<-` ) some operations or transformations to an object, those chances will not be registered 
+
+\small
+```{r}
+x <- c(1, 2, 3)
+print(x + 1)
+print(x)
+x <- x + 1
+print(x)
+```
+
+# Objects in \texttt{R}: three beginner tips
+2. New assignment will overwrite the original values if you assign some values to an existing object. It is a **major** source of errors. One advise is to keep distinct object names
+
+\small
+```{r}
+x <- c(1, 2, 3)
+length(x)
+
+x <- c(1, 2, 3, 4, 5)
+length(x)
+```
+
+# Objects in \texttt{R}: three beginner tips
+3. When using functions, we often bump into unexpected outputs, or error messages:
+  
+\small
+```{r}
+y <- c(1, 2, 3, NA)
+mean(y)
+
+# It's essential to know how to seek help:
+help(mean)
+?mean
+
+# Specify appropriate arguments for functions:
+mean(y, na.rm = TRUE)
+```
+
+# Objects in \texttt{R}: atomic vectors
+- What are vectors exactly?
+   - (Atomic) vectors are the most basic units of data in \texttt{R}
+   - Most common types of atomic vectors: **numeric (integer, double)**, **logical**, **character**
+
+# Objects in \texttt{R}: atomic vectors
+- Most common types of atomic vectors: **numeric (integer, double)**, **logical**, **character**
+
+\small
+```{r}
+x <- c(1, 2, 3)
+class(x)
+
+y <- c(TRUE, FALSE, FALSE)
+class(y)
+
+names <- c("Peter", "Paul", "Mary")
+class(names)
+```
+
+# Objects in \texttt{R}: atomic vectors
+- You can also coerce one type of vector into another: 
+
+\small
+```{r}
+x <- c(1, 2, 3)
+x <- as.character(x)
+
+print(x)
+
+class(x)
+```
+
+# Objects in \texttt{R}: matrix and data frame
+- To deal with massive data, we need efficient data structures to store and manipulate vectors: **matrices** and **data frames**
+
+# Objects in \texttt{R}: matrix and data frame
+- To create a matrix:
+
+\small
+```{r}
+# Create a vector
+numbers <- 1:12
+print(numbers)
+
+# Store it as a matrix
+matrix1 <- matrix(data = numbers, nrow = 3, byrow = TRUE)
+print(matrix1)
+```
+
+# Objects in \texttt{R}: matrix and data frame
+
+\small
+```{r}
+# Basic information
+class(matrix1)
+
+dim(matrix1) # dimensions
+```
+
+# Objects in \texttt{R}: matrix and data frame
+
+\small
+```{r}
+# We can change the row/column names of matrices
+rownames(matrix1) 
+
+rownames(matrix1) <- c("row1", "row2", "row3")
+print(matrix1)
+```
+
+# Objects in \texttt{R}: matrix and data frame
+
+\small
+```{r}
+# Automate any repetitive process
+col_names <- paste0("column", 1:4)
+print(col_names)
+
+colnames(matrix1) <- col_names
+print(matrix1)
+```
+
+# Objects in \texttt{R}: matrix and data frame
+
+\small
+```{r}
+# To augment the matrix with new column
+column5 <- c(13, 14, 15)
+matrix1 <- cbind(matrix1, column5)
+print(matrix1)
+```
+
+# Objects in \texttt{R}: matrix and data frame
+
+\small
+```{r}
+# To augment the matrix with new row
+row4 <- c("a", "b", "c", "d", "e")
+matrix1 <- rbind(matrix1, row4)
+print(matrix1)
+```
+Why do all vectors become characters? 
+
+# Objects in \texttt{R}: matrix and data frame
+- Matrices vs. data frames
+   - Matrices can only contain one **homogenous** type of vectors
+   - Data frames can contain **heterogeneous** types of vectors, and thus are more flexible
+
+# Objects in \texttt{R}: matrix and data frame
+- Data frames can contain **heterogeneous** types of vectors, and thus are more flexible
+
+\small
+```{r}
+df1 <- data.frame(
+  names = c("Peter", "Paul", "Mary"),
+  age = c(14, 15, 16),
+  female = c(FALSE, FALSE, TRUE),
+  stringsAsFactors = FALSE
+)
+
+print(df1)
+```
+
+# Objects in \texttt{R}: matrix and data frame
+
+\small
+```{r}
+# Basic information 
+class(df1)
+
+dim(df1)
+
+str(df1)
+```
+
+# Objects in \texttt{R}: subsetting data 
+- There are several ways to subset data: row/column indices, variable names, or evaluations
+
+\small
+```{r}
+# 1) Subsetting by row/column indices
+# For the element in row 1, column 1
+df1[1, 1]
+
+# For all elements in row 1, regardless of columns
+df1[1, ]
+
+# For all elements in column 1, regardless of rows
+df1[, 1]
+```
+
+# Objects in \texttt{R}: subsetting data
+
+\small
+```{r}
+# 2) Subsetting by variable names
+df1$names
+df1$age
+df1$female
+```
+
+# Objects in \texttt{R}: subsetting data
+
+\small
+```{r}
+# 3) Subsetting by evaluations
+df1[df1$age >= 15, ]
+df1[df1$female == TRUE, ]
+df1[df1$name %in% c("Peter", "Paul"), ]
+```
+
+# Objects in \texttt{R}: creating new variable in data frame
+
+\small
+```{r}
+print(df1)
+
+df1$edu
+
+df1$edu <- c("hs", "col", "phd")
+
+print(df1)
+```
+
+# Summary of data structures in \texttt{R}
+
+-----------------------------------------
+     Homogeneous         Heterogeneous
+---- ----------------   -----------------
+1d    Atomic vector      List
+
+2d    Matrix             Data frame
+
+nd    Array
+-----------------------------------------
+
+- Another important data structure: \texttt{factor} for categorical data, which will be important for visualization purpose
+
+# Vector practices
+- Create the following objects:
+1. vector1: {a1, a2, a3, b1, b2, b3, c1, c2, c3 ... z1, z2, z3}
+    - Hint: break downs the question into two parts; check out function \texttt{rep(..., times = ..., each = ...)}
+
+2. vector2: The sequence from 1 to 49 by an increment of 2
+    - Hint: check out function \texttt{seq(...)}
+    - Subset the 3rd, 16th, and 25th elements of the vector
+    - Subset those elements whose values are either smaller than 10, or greater than 40
+
+# Vector practices
+
+\small
+```{r}
+# Q1
+chr <- rep(letters, each = 3)
+print(chr)
+num <- rep(1:3, times = length(letters))
+print(num)
+```
+
+# Vector practices
+
+\small
+```{r}
+# Q1
+vector1 <- paste0(chr, num)
+print(vector1)
+```
+
+# Vector practices
+
+\small
+```{r}
+# Q2
+vector2 <- seq(from = 1, to = 49, by = 2)
+print(vector2)
+vector2[c(3, 16, 25)]
+vector2[vector2 < 10 | vector2 > 40]
+```
+
+# Vector practices
+3. matrix1: a 5 by 5 matrix containing values from vector2
+    - Assign the row names: row_a, row_b, row_c, row_d, row_e
+    - Assign the column names: col1, col2, col3, col4, col5
+    - Multiply the values in the first column of matrix 1 by 100; overwrite the original column
+
+4. df1: a dataframe with two variables:
+    - country = {US, UK, CA, FR, IT}
+    - pop = {327, 66, 37, 67, 60}
+    - Subset top-three observations in term of the level of population
+    - Hint: check out function \texttt{order(...)}
+    
+# Vector practices
+
+\small
+```{r}
+# Q3
+matrix1 <- matrix(data = vector2, nrow = 5, ncol = 5)
+rownames(matrix1) <- paste("row", letters[1:5], sep = "_")
+colnames(matrix1) <- paste0("col", 1:5)
+matrix1[, 1] <- matrix1[, 1] * 100
+print(matrix1)
+```
+
+# Vector practices
+
+\scriptsize
+```{r}
+# Q4
+df1 <- data.frame(country = c("US", "UK", "CA", "FR", "IT"),
+                  pop = c(327, 66, 37, 67, 60))
+print(df1)
+order(df1$pop, decreasing = TRUE)
+top3 <- order(df1$pop, decreasing = TRUE)[1:3]
+df1[top3, ]
+```
+
+# Workflow in \texttt{R}
+- Usual workflow for data anlaysis [@grolemund_r_2016]:
+
+```{r, echo = FALSE, out.width='85%', fig.align='center'}
+#knitr::include_graphics("C:/Users/ak915/git/MethodRA/data-science-explore.png")
+knitr::include_graphics("data-science-explore.png")
+```
+
+# Tidyverse and tidy data
+- \texttt{Tidyverse} is a collection of packages designed for data science with unified grammar and data structures
+
+- *Tidy data*:
+  - Each **variable** must have its own **column**
+  - Each **observation** must have its own **row**
+  - Each value must have its own cell
+
+# Tidyverse and tidy data
+>- To install \texttt{Tidyverse} package, run: 
+
+\small
+```{r, eval=FALSE}
+install.packages("tidyverse")
+```
+
+>- To load a package, run (usually at the top of your R document): 
+
+\small
+```{r, eval=FALSE}
+library(tidyverse)
+```
+
+# Importing data in \texttt{R}
+
+\small
+```{r, message=F, warning=F}
+# Load package
+library(tidyverse)
+```
+
+\small
+```{r}
+# Load econ.csv
+econ <- read_csv("http://staff.washington.edu/kpleung/vis/data/econ.csv")
+
+# tibble (tbl) is a special class of data frame
+class(econ)
+```
+
+# Importing data in \texttt{R}
+\scriptsize
+```{r}
+# Get a sense of the dataset
+glimpse(econ)
+
+head(econ)
+```
+
+# Basic data wrangling
+- Below are just scratching the surface; check out
+  - \href{https://www.datacamp.com/courses/introduction-to-the-tidyverse}{Introductory course to tidyverse at DataCamp}
+  - \href{https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf}{Cheat sheet for data wrangling} 
+  - \href{https://r4ds.had.co.nz}{\textit{R for Data Science}}
+
+# Basic data wrangling: `count()`
+Count number of rows in each group:
+\scriptsize
+```{r}
+econ %>%
+  count(country)
+```
+
+# Basic data wrangling: `%>%`
+>- What is `%>%` ("pipe")?
+>    - `x %>% fun(y)` is equivalent to `fun(x, y)`
+>    - Its advantage will be apparent when you perform numerous steps of manipulation
+
+\scriptsize
+```{r}
+count(econ, country) # Equivalent to econ %>% count(country)
+```
+
+# Basic data wrangling: `arrange()`
+Order rows by values of column(s) from low to high:
+\scriptsize
+```{r}
+econ %>%
+  count(country) %>%
+  arrange(n) # Rather than: arrange(count(econ, country), n)
+```
+
+# Basic data wrangling: `arrange()`
+Order rows by values of column(s) from high to low:
+\scriptsize
+```{r}
+econ %>%
+  count(country) %>%
+  arrange(desc(n))
+```
+
+# Basic data wrangling: `filter()`
+Extract rows that meet logical criteria:
+
+\scriptsize
+```{r}
+econ %>%
+  filter(country == "Brazil")
+```
+
+# Basic data wrangling: `filter()`
+Extract rows that meet **multiple** logical criteria:
+\scriptsize
+```{r}
+econ %>%
+  filter(
+    country == "Brazil" | country == "Russia (Soviet Union)" | 
+    country == "India"  | country == "China"
+  )
+```
+
+# Basic data wrangling: `filter()`
+Alternatively: 
+\scriptsize
+```{r}
+econ %>%
+  filter(country %in% c("Brazil", "Russia (Soviet Union)", "India", "China"))
+```
+
+# Basic data wrangling: `select()`
+Extract columns (variables):
+
+\scriptsize
+```{r}
+econ %>%
+  select(country, year, gdpPercap)
+```
+
+# Basic data wrangling: `filter()` & `select()`
+
+Filter USA observations from 2000 to 2010 with `year` and `gdpPercap` as the only variables:
+
+\scriptsize
+```{r}
+USAdata <- econ %>%
+  filter(country == "United States of America",
+         year %in% 2000:2010) %>%
+  select(year, gdpPercap)
+
+print(USAdata)
+```
+
+# Basic data wrangling: `summarize()`
+Compute table of summaries: 
+\small
+```{r}
+USAdata %>%
+  summarize(avg_gdpPercap = mean(gdpPercap))
+```
+What if we want to calculate the average GDP per capita for all countries in our data set?
+
+# Basic data wrangling: `group_by()` & `summarize()`
+>- Create a grouped version of the table with `group_by()`
+>    - Subsequent functions will manipulate each group *separately*
+    
+\scriptsize
+```{r}
+econ %>%
+  group_by(country) %>%
+  summarize(avg_gdpPercap = mean(gdpPercap)) %>%
+  arrange(desc(avg_gdpPercap))
+```
+
+# Basic data wrangling: more `summarize()`
+What if we want to know the numbers of distinct countries and years in the data set?
+\small
+```{r}
+econ %>%
+  summarize_at(c("country", "year"), n_distinct)
+```
+
+# Basic data wrangling: `mutate()`
+Compute new columns (variables): 
+\scriptsize
+```{r}
+econ %>%
+  mutate(
+    id = row_number(),
+    decade = year %/% 10 * 10
+  ) %>%
+  select(id, country, GWn, year, decade, gdpPercap)
+```
+
+# Basic data wrangling: `group_by()` & `summarize()`
+What if we want to know countries' average GDP per capita over decades? 
+\scriptsize
+```{r}
+econ %>%
+  mutate(decade = year %/% 10 * 10) %>%
+  group_by(country, decade) %>%
+  summarize(decAvg_gdp = mean(gdpPercap))
+```
+
+# Saving wrangled data
+
+When you save the wrangled data, don't overwrite the original data with the same file name:
+
+\small
+```{r, eval = FALSE}
+write_csv(econ, "econ_wrangled.csv")
+```
+
+# Intermediate data wranggling: second data set
+```{r, include = F}
+options(width=150)
+```
+
+\scriptsize
+```{r, message=F}
+pop <- read_csv("http://staff.washington.edu/kpleung/vis/data/pop.csv")
+head(pop)
+# Compare with econ
+head(econ)
+```
+
+# Intermediate data wranggling: `join` family
+How do we combine two data sets such that:
+\scriptsize
+```{r,echo=FALSE}
+econ %>%
+  left_join(pop, by = c("GWn", "year")) %>%
+  select(-country.y) %>%
+  rename(country = country.x)
+```
+
+# Intermediate data wranggling: `join` family
+Family of `join` functions: `inner_join`, `left_join`, `right_join`, `full_join`...
+
+\scriptsize
+```{r}
+data <- econ %>%
+  left_join(pop, by = c("GWn", "year")) %>%
+  select(-country.y) %>%
+  rename(country = country.x)
+```
+
+\scriptsize
+```{r, echo = F}
+print(data)
+```
+
+# Intermediate data wranggling: `separate` (or `Regex`) 
+
+How to separate the `region` column into `continent` and `sub_region`?
+
+\scriptsize
+```{r, echo = F}
+data %>%
+  separate(region, into = c("continent", "sub_region"), sep = ": ")
+```
+
+# Intermediate data wranggling: `separate` (or `Regex`)
+
+How to separate the `region` column into `continent` and `sub_region`?
+
+\scriptsize
+```{r}
+data %>%
+  separate(region, into = c("continent", "sub_region"), sep = ": ")
+```
+
+# Intermediate data wranggling: `separate` (or `Regex`)
+
+How to separate the `region` column into `continent` and `sub_region`?
+
+\scriptsize
+```{r}
+# Or using regular expression
+data %>%
+  mutate(continent = str_extract(region, ".*(?=: )"),
+         sub_region = str_extract(region, "(?<=: ).*")) %>%
+  select(-region)
+```
+
+```{r, include=F}
+data <- data %>%
+  separate(region, into = c("continent", "sub_region"), sep = ": ")
+```
+
+# Intermediate data wranggling: `case_when`
+
+- How to convert `pop` into a new categorical variable, called `popCat`:
+  - Countries with `pop` value lower than the first quartile of all `pop` is classified as "low"
+  - Countries with `pop` value equal to or higher than the first quartile, but lower than the third quartile is classified as "middle"
+  - Countries with `pop` value equal to or higher than the third quartile is classified as "high"
+  
+# Intermediate data wranggling: `case_when`
+\scriptsize
+```{r}
+Qts <- quantile(data$pop, prob = c(0.25, 0.75), na.rm = TRUE)
+print(Qts)
+
+Q1 <- Qts[1]
+Q3 <- Qts[2]
+
+data <- data %>%
+  mutate(popCat = case_when(pop < Q1 ~ "low",
+                            pop >= Q1 & pop < Q3 ~ "middle",
+                            pop > Q3 ~ "high")) 
+```
+
+\tiny
+```{r, echo = F}
+print(data)
+```
+
+# Intermediate data wranggling: `mutate` and `lag`
+Focus on USA data again. How to create a variable, named `growth`, thats computes the percentage change in `gdpPercap` compared to the immediate last year? 
+
+\scriptsize
+```{r, echo = F}
+data %>%
+  filter(country == "United States of America") %>%
+  mutate(gdpPercap_lag = lag(gdpPercap),
+         growth = (gdpPercap - gdpPercap_lag) / gdpPercap_lag) %>%
+  select(country, year, gdpPercap, growth)
+```
+
+# Intermediate data wranggling: `mutate` and `lag`
+\scriptsize
+```{r}
+# Extract USA data
+USAdata <- data %>%
+  filter(country == "United States of America") %>%
+  select(country, year, gdpPercap)
+
+# Use `lag` to create a column of gdpPercap in past year
+USAdata <- USAdata %>%
+  mutate(gdpPercap_lag1 = lag(gdpPercap, n = 1))
+
+print(USAdata)
+```
+
+# Intermediate data wranggling: `mutate` and `lag`
+\scriptsize
+```{r}
+USAdata <- USAdata %>%
+  mutate(growth = (gdpPercap - gdpPercap_lag1) / gdpPercap_lag1)
+
+print(USAdata)
+```
+
+# References
+\scriptsize
+
+

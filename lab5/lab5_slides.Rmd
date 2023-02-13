@@ -1,0 +1,144 @@
+---
+title: "CS&SS 569 Visualizing Data and Models"
+subtitle: "Lab 5: Intro to `tile`"
+author: "Brian Leung"
+institute: "Department of Political Science, UW"
+date: \today
+output:
+  beamer_presentation:
+    incremental: yes
+link-citations: yes
+linkcolor: blue
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction 
+- Overview of `tile`
+- Preview of three examples
+  - Scatterplot: HW1 example
+  - Expected probabilities and first differences: Voting example
+  - Ropeladder: Crime example
+- Installing `tile` and `simcf`
+- Walking through examples
+
+## Overview of `tile`
+- A fully featured R graphics package built on the `grid` graphics environment
+- Features:
+  - Make standard displays like scatterplots, lineplots, and dotplots
+  - Create more experimental formats like ropeladders
+  - Summarize uncertainty in inferences from model
+  - Avoid extrapolation from the original data underlying your model
+  - Fully control titles, annotation, and layering of graphical elements
+  - Build your own tiled graphics from primitives
+- Work well in combination with `simcf` package
+   - Calculate counterfactual expected values, first differences, and relative risks, and their confidence intervals
+   - More later
+
+## Overview of `tile`
+- Three steps to make `tile` plots (from Chris's [“Tufte Without Tears”](https://faculty.washington.edu/cadolph/software/tilepres4.pdf))
+  1. **Create data traces**: Each trace contains the data and graphical parameters needed to plot a single set of graphical elements to one or more plots
+      - Could be a set of points, or text labels, or lines, or a polygon
+      - Could be a set of points and symbols, colors, labels, fit line, CIs, and/or
+  extrapolation limits
+      - Could be the data for a dotchart, with labels for each line
+      - Could be the marginal data for a rug
+      - All annotation must happen in this step
+      - Basic traces: `linesTile()`, `pointsile()`, `polygonTile()`, `polylinesTile()`, and `textTile()`
+      - Complex traces: `lineplot()`, `scatter()`, `ropeladder()`, and `rugTile()`
+  
+## Overview of `tile`
+>  - Primitive trace functions: 
+>    - `linesTile()`: Plot a set of connected line segments
+>    - `pointsTile()`: Plot a set of points
+>    - `polygonTile()`: Plot a shaded region
+>    - `polylinesTile()`: Plot a set of unconnected line segments
+>    - `textTile()`: Plot text labels 
+>  - Complex traces for model or data exploration: 
+>    - `lineplot()`: Plot lines with confidence intervals, extrapolation warnings
+>    - `ropeladder()`: Plot dotplots with confidence intervals, extrapolation warnings, and shaded ranges
+>    - `rugTile()`: Plot marginal data rugs to axes of plots
+>    - `scatter()`: Plot scatterplots with text and symbol markers, fit lines, and confidence intervals 
+
+## Overview of `tile`
+- Three steps to make `tile` plots (from Chris's [“Tufte Without Tears”](https://faculty.washington.edu/cadolph/software/tilepres4.pdf))
+  1. **Create data trace**: Each trace contains the data and graphical parameters needed to plot a single set of graphical elements to one or more plots
+  2. **Plot the data traces**: Using the `tile()` function, simultaneously plot all traces to all plots
+      - This is the step where the scaffolding gets made: axes and titles 
+      - Set up the rows and columns of plots
+      - Titles of plots, axes, rows of plots, columns of plots, etc. 
+      - Set up axis limits, ticks, tick labels, logging of axes
+  3. **Examine output and revise**: Look at the graph made in step 2, and tweak the input parameters for steps 1 and 2 to make a better graph
+
+## Three examples
+>  - Scatterplot: HW1 example
+>  - Expected probabilities and first differences: Voting example
+>  - Ropeladder: Crime examples (if time permits)
+  
+## Scatterplot: HW 1 example
+```{r, echo=F}
+knitr::include_graphics("plot/iverScatter.pdf")
+```
+
+## Expected probabilities and first differences: Voting example
+```{r, echo=F}
+knitr::include_graphics("plot/educationEV.pdf")
+```
+
+## Scatterplot: HW 1 example
+- A quick detour to model results presentation and the logic of simulation (consult POLS/CSSS 510:MLE::[Topic 3](https://faculty.washington.edu/cadolph/mle/topic3.p.pdf))
+  1. Obtain estimated parameters ($\hat{\beta}_{k}$) and standard errors (more precisely, the variance-covariance matrix)
+      - `lm()`, `glm()`...; `coef()`, `vcov()`...
+      - What you see in usual regression tables
+  2. Capture our uncertainty around $\hat{\beta}_{k}$ by drawing, say, 10,000 $\tilde{\beta}_{k}$ from a multivariate normal distribution
+      - `MASS::mvrnorm()`
+  3. Specify counterfactual scenarios (hypothetical values for all relevant covariates $x_{k}$)
+      - `simcf::cfMake`, `cfChange`...
+  4. Simulate quantities of interest by compounding those 10,000 $\tilde{\beta}_{k}$ with counterfactual scenarios 
+      - Then compute average (point estimate) and appropriate percentiles (confidence intervals)
+      - `simcf::logitsimev()` for expected values for logit models
+      - `logitsimfd` for first differences
+      - `logitsimrr` for relative risks
+
+## Expected probabilities and first differences: Voting example
+```{r, echo=F}
+knitr::include_graphics("plot/educationEV.pdf")
+```
+
+## Expected probabilities and first differences: Voting example
+```{r, echo=F}
+knitr::include_graphics("plot/marriedEV.pdf")
+```
+
+## Expected probabilities and first differences: Voting example
+```{r, echo=F}
+knitr::include_graphics("plot/marriedFDRR.pdf")
+```
+
+## Ropeladder: Crime example (if time permits)
+```{r, echo=F}
+knitr::include_graphics("plot/ropeladderEx0.pdf")
+```
+
+## Ropeladder: Crime example (if time permits)
+```{r, echo=F}
+knitr::include_graphics("plot/ropeladderEx1.pdf")
+```
+
+## 
+```{r, echo=F, fig.height=0.5}
+knitr::include_graphics("plot/ropeladderEx2.pdf")
+```
+
+## Ropeladder: Crime example (if time permits)
+```{r, echo=F}
+knitr::include_graphics("plot/ropeladderEx3.pdf")
+```
+
+##  Installing `tile` and `simcf`
+- Go to Chris's website, [Software section](https://faculty.washington.edu/cadolph/index.php?page=60)
+- Also download all `R` scripts and data under today's Lab section

@@ -1,0 +1,644 @@
+---
+title: "CS&SS 569 Visualizing Data and Models"
+subtitle: "Lab 3: ggplot2"
+author: "Brian Leung"
+institute: "Department of Political Science, UW"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: xaringan-themer.css
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(fig.width = 12, fig.height = 9, message = FALSE, warning = FALSE, comment = "", cache = F)
+library(flipbookr)
+library(xaringan)
+library(tidyverse)
+library(scales)
+library(ggrepel)
+library(RColorBrewer)
+```
+
+## Introduction 
+
+- Unpack the design philosophy and inner working of ggplot2
+
+--
+
+- Gain finer control over *each and every* aspect of the graphic design, rather than relying on default 
+
+--
+
+- Showcase some tricks and useful functions common in my own viz workflow
+
+--
+
+- Hopefully it benefits beginners, and intermediate (at least marginally), users to ggplot2
+
+---
+
+## ggplot2 design philosophy 
+
+- Grammar of graphics 
+
+--
+
+  - A statistical graphic is a `mapping` of `data` variables to `aes`thetic attributes of `geom`etric objects. (Wilkinson 2005)
+
+--
+
+- *What* data do you want to visualize?
+  
+--
+
+  - `ggplot(data = ...)`
+  
+--
+  
+- *How* are variables mapped to specific aesthetic attributes?
+
+--
+
+  - `aes(... = ...)`
+  
+--
+
+  - positions (`x`, `y`), `shape`, `colour`, `size`, `fill`, `alpha`, `linetype`, `label`... 
+  
+--
+
+  - If the value of an attribute do not vary w.r.t. some variable, don't wrap it within `aes(...)`
+  
+--
+
+- *Which* geometric shapes do you use to represent the data?
+
+--
+
+  - `geom_{...}`: `geom_point`, `geom_line`, `geom_ribbon`, `geom_polygon`...
+  
+---
+
+## ggplot2: A layered grammar
+
+- ggplot2: A *layered* grammar of graphics (Wickham 2009)
+
+--
+  
+  - Build a graphic from multiple layers; each consists of some geometric objects or transformation 
+  
+--
+
+  - Use `+` to stack up layers
+
+--
+
+- When you declare `ggplot(data = ..., aes(...))`, you're declaring the default specification 
+
+--
+
+- Within each `geom_{}` layer that follows, two things are *inherited* from the default specification at the master level
+
+--
+
+  - Data: inherited from the default data you supply 
+
+--
+  
+  - Aesthetics: inherited from the default aesthetics (`inherit.aes = TRUE`) 
+
+--
+  
+  - They are convenient but can create unintended consequences
+
+--
+
+  - We will learn how to overwrite this property for extra flexibility 
+
+---
+
+## Quick demo: inherit.aes = TRUE property
+
+```{r}
+library(tidyverse)
+
+iver_data <- read_csv("https://faculty.washington.edu/cadolph/vis/iverRevised.csv")
+
+head(iver_data)
+```
+
+---
+
+`r chunk_reveal("iver1", break_type = "non_seq", title = "## Why are there multiple smooth curves? -- inherit.aes")`
+
+```{r "iver1", include = FALSE}
+ggplot(iver_data, 
+    aes(x = effectiveParties, 
+        y = povertyReduction, 
+        color = partySystem)) + #BREAK
+  geom_point(
+    inherit.aes = TRUE,       #BREAK2
+    aes(x = effectiveParties, #BREAK2
+        y = povertyReduction, #BREAK2
+        color = partySystem)  #BREAK2
+  ) +
+  geom_smooth(
+    inherit.aes = TRUE,       #BREAK3
+    aes(x = effectiveParties, #BREAK3
+        y = povertyReduction, #BREAK3
+        color = partySystem), #BREAK3
+    method = MASS::rlm        
+  )
+```
+
+---
+
+`r chunk_reveal("iver2", break_type = "non_seq", title = "## You can either overwrite the geom_smooth() layer")`
+
+
+```{r "iver2", include = FALSE}
+ggplot(iver_data, 
+    aes(x = effectiveParties, 
+        y = povertyReduction, 
+        color = partySystem)) + 
+  geom_point(
+  ) + 
+  geom_smooth(
+    aes(group = 1),    #BREAK2
+    method = MASS::rlm        
+  )
+```
+
+---
+
+`r chunk_reveal("iver3", break_type = "non_seq", title = "## Or localize color aesthetics to the geom_point layer()")`
+
+```{r "iver3", include=FALSE}
+ggplot(iver_data, 
+    aes(x = effectiveParties, 
+        y = povertyReduction)) + 
+  geom_point(
+    aes(color = partySystem) #BREAK2
+  ) + 
+  geom_smooth(
+    method = MASS::rlm        
+  )
+```
+
+---
+
+## A segue to a customized ggplot2 theme 
+
+- Chris and I wrote a customized ggplot2 theme to implement a minimalist aesthetics
+
+--
+
+- Can be downloaded here: https://students.washington.edu/kpleung/vis/theme_cavis.R
+
+--
+
+- To use it 
+
+```{r}
+source("https://students.washington.edu/kpleung/vis/theme_cavis.R")
+# source(".../theme_cavis.R") if you have download and put it in your directory
+```
+
+--
+
+- I'll use this theme throughout my vis; you don't have to (and suggestions are welcomed!)
+
+---
+
+`r chunk_reveal("theme_cavis", break_type = "rotate", title = "## Showcase customized theme")`
+
+```{r "theme_cavis", include = FALSE}
+ggplot(iris, 
+       aes(x = Sepal.Length,
+           y = Petal.Length,
+           color = Species)) +
+  geom_point() + 
+  theme_grey() + #ROTATE 
+  theme_cavis_hgrid + #ROTATE 
+  theme_cavis_vgrid + #ROTATE
+  theme_cavis #ROTATE
+```
+
+---
+
+## Visualization exercises: Electric vehicles in WA state 
+
+- Data are taken from [Washington State Department of Licensing](https://data.wa.gov/Transportation/Electric-Vehicle-Population-Data/f6w7-q2d2)
+
+--
+
+- "This dataset shows the Battery Electric Vehicles (BEVs) and Plug-in Hybrid Electric Vehicles (PHEVs) that are currently registered through Washington State Department of Licensing (DOL)."
+
+--
+
+- Load the electric vehicles data 
+
+```{r}
+ev_data <- read_csv("data/ev_data.csv")
+head(ev_data)
+```
+
+---
+
+## Visualization exercises: Electric vehicles in WA state 
+
+- Also some auxiliary county data with number of households and their median income 
+
+```{r}
+county_data <- read_csv("data/county_data.csv")
+head(county_data)
+```
+
+---
+
+`r chunk_reveal("ev_by_county1", break_type = "auto", widths = c(90, 10), title = "## EV in WA state: Which county has most EVs?", float = "top")`
+
+```{r "ev_by_county1", include = FALSE}
+# Count EVs by county 
+ev_data %>%
+  count(county) %>%
+  mutate(county = fct_reorder(county, n)) %>%
+  arrange(desc(county)) -> 
+  ev_by_county
+
+# Load scales package for labels and breaks
+library(scales)
+```
+
+---
+
+`r chunk_reveal("ev_by_county2", break_type = "non_seq", widths = c(50, 50), title = "## EV in WA state: Which county has most EVs?")`
+
+```{r "ev_by_county2", include = FALSE}
+ggplot(ev_by_county, 
+       aes(y = county, x = n)) +
+  theme_cavis_vgrid +
+  geom_point() +  
+  geom_col(       #BREAK2
+    width = 0.05, #BREAK3
+    alpha = 0.5   #BREAK3
+  ) +             #BREAK2
+  scale_x_continuous(               #BREAK4
+    trans = "log10",                #BREAK4
+    breaks = 10^(0:5),              #BREAK5
+    labels = scales::label_comma(), #BREAK5
+  ) +                               #BREAK4
+  geom_text(                                   #BREAK6
+    data = slice_max(ev_by_county, n, n = 10), #BREAK8
+    aes(label = n),                            #BREAK6
+    nudge_x = 0.15                             #BREAK7
+  ) +                                          #BREAK6
+  labs(y = NULL, x = "Total number of EVs")    #BREAK9
+```
+
+---
+
+`r chunk_reveal("ev_by_countyYear1", break_type = "auto", widths = c(90, 10), title = "## EV in WA state: Trend of number of EVs across county", float = "top")`
+
+```{r "ev_by_countyYear1", include = FALSE}
+# Count number of EVs by county
+ev_data %>% 
+  group_by(model_year, county) %>%
+  count() ->
+  ev_by_countyYear
+```
+
+---
+
+`r chunk_reveal("ev_by_countyYear2", break_type = "auto", widths = c(50, 50), title = "## EV in WA state: Trend of number of EVs across county")`
+
+```{r "ev_by_countyYear2", include = FALSE, eval=F}
+ggplot(ev_by_countyYear,
+       aes(x = model_year, 
+           y = n,
+           group = county,
+           color = county == "King")) +
+  theme_cavis_hgrid +
+  geom_line() +
+  scale_y_continuous(trans = "log10") +
+  scale_color_manual(values = c("grey90", "red")) +
+  guides(color = "none") + 
+  annotate("text", x = 2018, y = 13000, 
+           label = "King County", 
+           color = "red") +
+  geom_vline(xintercept = 2012, linetype = 2, 
+             color = "grey45") +
+  annotate("text", x = 2010, y = 15000, 
+           label = "Tesla Model S\nintroduced", 
+           color = "black") +
+  labs(y = "Number of registed EVs", x = NULL)
+```
+
+---
+
+`r chunk_reveal("price_range1", break_type = "auto", widths = c(90, 10), title = "## EV in WA state: Relationship between price and range", float = "top")`
+
+```{r "price_range1", include = FALSE}
+ev_data %>%
+  distinct(make, model, model_year, ev_type, electric_range, retail_price) %>%
+  filter(retail_price > 0 & electric_range > 0) ->
+  ev_models
+
+# load packages 
+library(ggrepel)
+library(RColorBrewer)
+```
+
+---
+
+## A segue to choosing colors
+
+- Use `RColorBrewer` package to choose colors
+
+--
+
+- Choose between sequential, diverging or qualitative palettes based on your data
+
+--
+
+- Check out this [website](https://colorbrewer2.org/)
+
+---
+
+`r chunk_reveal("color1", break_type = "auto", widths = c(50, 50), title = "## A segue to choosing colors")`
+
+```{r "color1", include = FALSE}
+RColorBrewer::display.brewer.all()
+colors <- brewer.pal(n = 5, name = "Set1")
+print(colors)
+blue <- colors[2]
+orange <- colors[5]
+```
+
+---
+
+`r chunk_reveal("price_range2", break_type = "non_seq", widths = c(50, 50), title = "## EV in WA state: Relationship between price and range")`
+
+```{r "price_range2", include = FALSE}
+ggplot(ev_models,
+       aes(x = electric_range, y = retail_price,
+           color = ev_type, fill = ev_type)) +
+  theme_cavis_hgrid +
+  geom_point(alpha = 0.75) +
+  geom_smooth(method = "lm",               #BREAK2                            
+              alpha = 0.15, size = 0.45) + #BREAK2                           
+  scale_x_continuous(trans = "log2") + #BREAK3
+  scale_y_continuous(trans = "log10",  #BREAK4
+                     labels = label_dollar())+ #BREAK4
+  scale_color_manual(values = c(blue, orange)) + #BREAK5
+  scale_fill_manual(values = c(blue, orange)) +  #BREAK5
+  geom_text_repel(                                          #BREAK6
+    aes(label = paste(make, model, model_year)),            #BREAK6
+    show.legend = FALSE,                                    #BREAK7
+    size = 3, alpha = 0.75                                  #BREAK7
+  ) +                                                       #BREAK6
+  theme(legend.position = "top") +                          #BREAK8
+  labs(y = "Retail price", x = "Electric range (mile)")     #BREAK9
+```
+
+---
+
+## Another segue: how to properly save a graph? 
+
+- Don't use the `Export` interface in your RStudio
+
+--
+
+- Use code for reproducibility; explicitly declare parameters (e.g. for width, height and aspect ratio) 
+
+--
+
+- Use `ggsave()` function for ggplot2 objects
+
+```{r, eval = FALSE}
+width <- 12
+ggsave("ev_bivariate.pdf", width = width, height = width/1.618)
+```
+
+---
+
+`r chunk_reveal("make_share_fail", break_type = "auto", widths = c(50, 50), title = "## EV in WA state: Shares of makes across counties")`
+
+```{r "make_share_fail", include=FALSE}
+# bad example
+ev_data %>%
+  group_by(county, make) %>%
+  count() %>%
+  ggplot(aes(x = n, y = make)) +
+  theme_cavis_vgrid +
+  geom_point() +
+  facet_wrap(~ county) +
+  scale_x_continuous(
+    trans = "log10", 
+    labels = label_log()
+  )
+```
+
+---
+
+`r chunk_reveal("make_share1", break_type = "auto", widths = c(90, 10), float = "top", title = "## EV in WA state: Shares of makes across counties")`
+
+```{r "make_share1", include=FALSE}
+# Focus on the top 7 most popular makes
+ev_data %>%
+  count(make) %>%
+  slice_max(order_by = n, n = 7) ->
+  top7_make 
+```
+
+---
+
+`r chunk_reveal("make_share2", break_type = "auto", widths = c(90, 10), float = "top", title = "## EV in WA state: Shares of makes across counties")`
+
+
+```{r "make_share2", include=FALSE}
+# Shares of top-7 makes across county
+ev_data %>%
+  group_by(county, make) %>%
+  count() %>%
+  filter(make %in% top7_make$make) %>%
+  group_by(county) %>%
+  mutate(county_sum = sum(n), prop = n / county_sum) ->
+  make_share_byCounty
+```
+
+---
+
+`r chunk_reveal("make_share3", break_type = "auto", widths = c(90, 10), float = "top", title = "## EV in WA state: Shares of makes across counties")`
+
+```{r "make_share3", include=FALSE}
+# Coerce `make` into factor and put TESLA as last level
+make_share_byCounty %>%
+  mutate(make = as.factor(make),
+         make = fct_relevel(make, "TESLA", after = Inf)) ->
+  make_share_byCounty
+
+# Check levels
+head(make_share_byCounty$make)
+```
+
+---
+
+`r chunk_reveal("make_share4", break_type = "non_seq", widths = c(50, 50), title = "## EV in WA state: Shares of makes across counties")`
+
+```{r "make_share4", include=FALSE}
+ggplot(make_share_byCounty,
+       aes(x = prop, 
+           y = county, 
+           fill = make)) +
+  theme_cavis +
+  geom_bar(                                 #BREAK2
+    position = "stack", stat = "identity",  #BREAK2
+    color = "white"                         #BREAK3 
+  ) +                                       #BREAK2
+  scale_fill_brewer(                        #BREAK4
+    type = "qual",                          #BREAK4
+    palette = 4 ,                           #BREAK5
+    direction = -1                          #BREAK5
+  ) +                                       #BREAK4
+  scale_x_continuous(                       #BREAK6
+    expand = c(0, 0),                       #BREAK6
+    labels = label_percent(),               #BREAK7
+    sec.axis = dup_axis()                   #BREAK7
+  ) +                                       #BREAK6
+  theme(aspect.ratio = 1.618) +             #BREAK8
+  labs(y = NULL, x = NULL)                  #BREAK9
+```
+
+---
+
+`r chunk_reveal("make_share5", break_type = "user", widths = c(50, 50), title = "## EV in WA state: Shares of makes across counties")`
+
+```{r "make_share5", include=FALSE}
+ggplot(make_share_byCounty,                 
+       aes(x = prop,                        
+           y = fct_reorder2(county, make, prop), 
+           fill = make)) +                  
+  theme_cavis +                             
+  geom_bar(                                 
+    position = "stack", stat = "identity",  
+    color = "white"                         
+  ) +                                       
+  scale_fill_brewer(                        
+    type = "qual",                          
+    palette = 4 ,                           
+    direction = -1                          
+  ) +                                       
+  scale_x_continuous(                       
+    expand = c(0, 0),                       
+    labels = label_percent(),               
+    sec.axis = dup_axis()                  
+  ) +                                      
+  theme(aspect.ratio = 1.618) +         
+  labs(y = NULL, x = NULL)        #BREAK
+
+```
+
+---
+
+`r chunk_reveal("ev_income1", break_type = "auto", widths = c(90, 10), float = "top", title = "## EV in WA state: Num. of EVs and median income")`
+
+
+```{r "ev_income1", include = FALSE}
+ev_data %>%
+  group_by(county) %>%
+  count() %>%
+  left_join(county_data, by = "county") %>%
+  mutate(n_EV_perhh = n / hh_num * 1000) ->
+  ev_by_income 
+```
+
+---
+
+`r chunk_reveal("ev_income2", break_type = "auto", widths = c(50, 50), title = "## EV in WA state: Num. of EVs and median income")`
+
+```{r "ev_income2", include = FALSE}
+ggplot(ev_by_income,
+       aes(x = hh_income, y = n_EV_perhh)) +
+  theme_cavis_hgrid +
+  geom_point(alpha = 0.75, color = blue) +
+  scale_x_continuous(trans = "log10",
+                     labels = label_dollar()) +
+  scale_y_continuous(trans = "log2") +
+  geom_smooth(method = "lm", alpha = 0.2,
+              color = blue, fill = blue) +
+  labs(y = "N of EVs per 1,000 household",
+       x = "Median household income") +
+  geom_text_repel(aes(label = county)) 
+```
+
+---
+
+`r chunk_reveal("ev_income3", break_type = "auto", widths = c(90, 10), float = "top", title = "## EV in WA state: Num. of EVs and median income")`
+
+
+```{r "ev_income3", include = FALSE}
+# find outliners
+lm(n_EV_perhh ~ hh_income, ev_by_income) %>%
+  broom::augment(ev_by_income) %>%
+  slice_max(order_by = abs(.resid), n = 10) %>%
+  pull(county) ->
+  outliners
+```
+
+---
+
+`r chunk_reveal("ev_income4", break_type = "user", widths = c(50, 50), title = "## EV in WA state: Num. of EVs and median income")`
+
+```{r "ev_income4", include = FALSE}
+ggplot(ev_by_income,
+       aes(x = hh_income, y = n_EV_perhh)) +
+  theme_cavis_hgrid +
+  geom_point(alpha = 0.75, color = blue) +
+  scale_x_continuous(trans = "log10",
+                     labels = label_dollar()) +
+  scale_y_continuous(trans = "log2") +
+  geom_smooth(method = "lm", alpha = 0.2,
+              color = blue, fill = blue) +
+  labs(y = "N of EVs per 1,000 household",
+       x = "Median household income") + #BREAK
+  geom_text_repel(
+    data = filter(ev_by_income, 
+                  county %in% outliners),
+    aes(label = county)
+  ) 
+```
+
+---
+
+## Some takeaways
+
+- Don't rely on defaults; starts with minimalist aesthetics
+
+--
+  
+- Understand the consequence of `inherit.aes = TRUE` and how to take advantage/overwrite it 
+
+--
+  
+- Learn to scale everything (color, fill, x-axis, y-axis, etc)
+
+--
+  
+- Choose nice colors with `RColorBrewer` 
+
+--
+  
+- Order things intelligently with `factor`
+
+--
+  
+- Save graphic output correctly with `ggsave`

@@ -1,0 +1,233 @@
+---
+title: "lab6_slides_supp"
+author: "Brian Leung"
+date: "`r Sys.Date()`"
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+# download packages 
+packages <- c("tidyverse", "geofacet", "statebins", "sf", "tmap", "tigris")
+not_installed <- setdiff(packages, rownames(installed.packages()))
+if (length(not_installed)) install.packages(not_installed)
+
+# load packages
+library(tidyverse)
+library(geofacet)
+library(statebins)
+library(sf)
+library(tmap)
+library(tigris)
+
+# load theme
+source("https://students.washington.edu/kpleung/vis/theme_cavis.R")
+```
+
+
+## Geo-faceted small multiples
+
+```{r}
+# load data
+WaPo_data <- read_csv("data/WaPo_data.csv")
+
+# convert to long format
+WaPo_data_long <- 
+  WaPo_data %>%
+  select(-avgshare) %>%
+  pivot_longer(contains("share_cut"), names_to = "year", values_to = "share_cut") %>%
+  mutate(year = str_extract(year, "\\d+"),
+         year = as.numeric(year))
+
+## visualize
+ggplot(WaPo_data_long, aes(x = year , y = share_cut)) +
+  theme_cavis_hgrid +
+  geom_line() +
+  #facet_wrap(~ state) + 
+  facet_geo(~ state, grid = "us_state_grid1") + 
+  scale_x_continuous(
+    labels = function(x) paste0("'", str_sub(x, 3, 4))
+  ) +
+  scale_y_continuous(
+    labels = function(x) paste0(x, "%")
+  ) +
+  theme(
+    strip.text.x = element_text(size = 7),
+    axis.text.x = element_text(size = 7),
+    axis.text.y = element_text(size = 7)
+  ) +
+  labs(x = NULL, y = "Share of job loss due to trade")
+```
+
+## Cartogram Heatmaps 
+
+```{r}
+# coerce avgshare into a factor 
+WaPo_data2 <- 
+  WaPo_data %>%
+  select(stab, state, avgshare) %>%
+  mutate(avgshare2 = cut(avgshare, breaks = 4, labels = c("0-1", "1-2", "2-3", "3-4")))
+
+
+WaPo_data2 %>%
+  statebins(value_col = "avgshare2",
+            ggplot2_scale_function = scale_fill_brewer,
+            round = TRUE) +
+  theme_statebins() +
+  scale_fill_brewer(palette = "Blues", 
+                    labels = c("Smallest\nshare", "", "", "Largest"), 
+                    name = "Share of job loss due to trade") +
+  theme(legend.position = c(0, 0.85),
+        legend.direction = "horizontal",
+        legend.key.height = unit(0.2, "cm"),
+        legend.key.width = unit(1.6, "cm")
+        ) +
+  guides(fill = guide_legend(title.position = "top",
+                             label.position = "bottom"))
+```
+
+
+## Choropleth maps 
+
+```{r}
+# load US shapefiles
+us_shp <- st_read("data/cb_2018_us_state_20m/cb_2018_us_state_20m.shp")
+
+# join with WaPo data and rescale AK, HI, PR
+us_shp2 <-
+  us_shp %>%
+  left_join(WaPo_data, by = c("NAME" = "state")) %>%
+  tigris::shift_geometry() 
+
+# visualize with tmap
+us_jobCut_map <- 
+  tm_shape(us_shp2) + 
+  tm_polygons(
+    col = "avgshare",    
+    palette = "Blues",   
+    border.col = "white", 
+    legend.is.portrait = FALSE, 
+    title = "Share of job loss due to trade",       
+    labels = c("Smallest", "", "", "Largest share") 
+  ) +
+  tm_text(                   
+    text = "STUSPS",         
+    col = "white",           
+    size = "avgshare",       
+    legend.size.show = FALSE 
+  ) +                        
+  tm_layout(                 
+    frame = FALSE,           
+    legend.stack = "horizontal", 
+    legend.position = c(0.65, 0.95), 
+    legend.title.size = 1, 
+    legend.text.size = 0.5   
+  ) 
+
+us_jobCut_map
+
+tmap_save(us_jobCut_map, filename = "us_jobCut_map.pdf")
+```
+
+## New York examples
+
+```{r}
+# load NYC shpapfile
+nyc_shp <- st_read("data/nyc/nyc.shp")
+
+# visualize map
+tm_shape(nyc_shp) + tm_polygons(
+  col = "rent2008",      
+  palette = "BrBG",      
+  border.col = "white",  
+  title = "Rent in 2008" 
+  ) +             
+  tm_layout(frame = FALSE) 
+
+# interactive mode
+tmap_mode("view")
+sf::sf_use_s2(use_s2 = FALSE) 
+
+tm_shape(nyc_shp) + tm_polygons(
+    col = "rent2008", 
+    palette = "BrBG",
+    title = "Rent in 2008",
+    alpha = 0.5
+  ) +
+  tm_basemap(
+    server = "OpenStreetMap", 
+    alpha = 0.5
+  )
+
+# back to plotting mode
+tmap_mode("plot")
+
+# small multiples with tmap_arrange()
+rentNYC <- 
+  tm_shape(nyc_shp) + 
+  tm_polygons(
+    col = "rent2008", 
+    palette = "BrBG",
+    border.col = "white",
+    title = "Rent in 2008"
+  ) +
+  tm_layout(frame = FALSE) 
+
+hisNYC <- 
+  tm_shape(nyc_shp) + 
+  tm_polygons(
+    col = "forhis08",
+    border.col = "white",
+    title = "Hispanic population in 2008 (%)"
+  ) +
+  tm_layout(frame = FALSE) 
+
+pubastNYC <- 
+  tm_shape(nyc_shp) + 
+  tm_polygons(
+    col = "pubast00",
+    palette = "Blues",
+    border.col = "white",
+    title = "% of households receiving \nassistance in 2000"
+  ) +
+  tm_layout(frame = FALSE) 
+
+tmap_arrange(rentNYC, hisNYC, pubastNYC, nrow = 1)
+
+# small multiples with tm_facets()            
+nyc_shp2 <- 
+  nyc_shp %>%
+  mutate(forhis08_cat = cut(forhis08, breaks = 3, 
+                            labels = c("Low hisp pop", "Mid hisp pop", "High hisp pop")))
+
+tm_shape(nyc_shp2) + 
+  tm_polygons(
+    col = "rent2008", 
+    palette = "BrBG", 
+    border.col = "white",
+    title = "Rent in 2008"
+  ) +
+  tm_facets(                        
+    by = "forhis08_cat",            
+    drop.units = TRUE,              
+    free.coords = FALSE,            
+  ) +                               
+  tm_layout(                          
+    legend.outside.size = 0.135,      
+    frame = FALSE,                    
+    panel.label.bg.color = NA,        
+    frame.lwd = NA,                   
+    panel.label.size = 1.5            
+  ) +                                 
+  tm_shape(nyc_shp2) +                
+  tm_borders(col = "grey75", lty = 2) 
+```
+
+
+
+
+
+
+

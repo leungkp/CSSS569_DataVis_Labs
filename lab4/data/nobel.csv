@@ -1,0 +1,882 @@
+prize_year,category,laureate_id,full_name,gender,organization_country,prize_share
+1901,Physics,1,Wilhelm Conrad Röntgen,Male,Germany,1/1
+1901,Chemistry,160,Jacobus Henricus van 't Hoff,Male,Germany,1/1
+1901,Medicine,293,Emil Adolf von Behring,Male,Germany,1/1
+1901,Peace,462,Jean Henry Dunant,Male,NA,1/2
+1901,Peace,463,Frédéric Passy,Male,NA,1/2
+1901,Literature,569,Sully Prudhomme,Male,NA,1/1
+1902,Physics,2,Hendrik Antoon Lorentz,Male,Netherlands,1/2
+1902,Physics,3,Pieter Zeeman,Male,Netherlands,1/2
+1902,Chemistry,161,Hermann Emil Fischer,Male,Germany,1/1
+1902,Medicine,294,Ronald Ross,Male,United Kingdom,1/1
+1902,Peace,464,Élie Ducommun,Male,NA,1/2
+1902,Peace,465,Charles Albert Gobat,Male,NA,1/2
+1902,Literature,571,Christian Matthias Theodor Mommsen,Male,NA,1/1
+1903,Physics,4,Antoine Henri Becquerel,Male,France,1/2
+1903,Physics,5,Pierre Curie,Male,France,1/4
+1903,Physics,6,"Marie Curie, née Sklodowska",Female,NA,1/4
+1903,Chemistry,162,Svante August Arrhenius,Male,Sweden,1/1
+1903,Medicine,295,Niels Ryberg Finsen,Male,Denmark,1/1
+1903,Peace,466,William Randal Cremer,Male,NA,1/1
+1903,Literature,572,Bjørnstjerne Martinus Bjørnson,Male,NA,1/1
+1904,Physics,8,Lord Rayleigh (John William Strutt),Male,United Kingdom,1/1
+1904,Chemistry,163,Sir William Ramsay,Male,United Kingdom,1/1
+1904,Medicine,296,Ivan Petrovich Pavlov,Male,Russia,1/1
+1904,Literature,573,Frédéric Mistral,Male,NA,1/2
+1904,Literature,574,José Echegaray y Eizaguirre,Male,NA,1/2
+1905,Physics,9,Philipp Eduard Anton von Lenard,Male,Germany,1/1
+1905,Chemistry,164,Johann Friedrich Wilhelm Adolf von Baeyer,Male,Germany,1/1
+1905,Medicine,297,Robert Koch,Male,Germany,1/1
+1905,Peace,468,"Baroness Bertha Sophie Felicita von Suttner, née Countess Kinsky von Chinic und Tettau",Female,NA,1/1
+1905,Literature,575,Henryk Sienkiewicz,Male,NA,1/1
+1906,Physics,10,Joseph John Thomson,Male,United Kingdom,1/1
+1906,Chemistry,165,Henri Moissan,Male,France,1/1
+1906,Medicine,298,Camillo Golgi,Male,Italy,1/2
+1906,Medicine,299,Santiago Ramón y Cajal,Male,Spain,1/2
+1906,Peace,470,Theodore Roosevelt,Male,NA,1/1
+1906,Literature,576,Giosuè Carducci,Male,NA,1/1
+1907,Physics,11,Albert Abraham Michelson,Male,United States of America,1/1
+1907,Chemistry,166,Eduard Buchner,Male,Germany,1/1
+1907,Medicine,300,Charles Louis Alphonse Laveran,Male,France,1/1
+1907,Peace,471,Ernesto Teodoro Moneta,Male,NA,1/2
+1907,Peace,472,Louis Renault,Male,France,1/2
+1907,Literature,577,Rudyard Kipling,Male,NA,1/1
+1908,Physics,12,Gabriel Lippmann,Male,France,1/1
+1908,Chemistry,167,Ernest Rutherford,Male,United Kingdom,1/1
+1908,Medicine,301,Ilya Ilyich Mechnikov,Male,France,1/2
+1908,Medicine,302,Paul Ehrlich,Male,Germany,1/2
+1908,Peace,473,Klas Pontus Arnoldson,Male,NA,1/2
+1908,Peace,474,Fredrik Bajer,Male,NA,1/2
+1908,Literature,578,Rudolf Christoph Eucken,Male,NA,1/1
+1909,Physics,13,Guglielmo Marconi,Male,United Kingdom,1/2
+1909,Physics,14,Karl Ferdinand Braun,Male,"Alsace (then Germany, now France)",1/2
+1909,Chemistry,168,Wilhelm Ostwald,Male,Germany,1/1
+1909,Medicine,303,Emil Theodor Kocher,Male,Switzerland,1/1
+1909,Peace,475,Auguste Marie François Beernaert,Male,NA,1/2
+1909,Peace,476,"Paul Henri Benjamin Balluet d'Estournelles de Constant, Baron de Constant de Rebecque",Male,NA,1/2
+1909,Literature,579,Selma Ottilia Lovisa Lagerlöf,Female,NA,1/1
+1910,Physics,15,Johannes Diderik van der Waals,Male,Netherlands,1/1
+1910,Chemistry,169,Otto Wallach,Male,Germany,1/1
+1910,Medicine,304,Albrecht Kossel,Male,Germany,1/1
+1910,Literature,580,Paul Johann Ludwig Heyse,Male,NA,1/1
+1911,Chemistry,6,"Marie Curie, née Sklodowska",Female,France,1/1
+1911,Physics,16,Wilhelm Wien,Male,Germany,1/1
+1911,Medicine,305,Allvar Gullstrand,Male,Sweden,1/1
+1911,Peace,478,Tobias Michael Carel Asser,Male,NA,1/2
+1911,Peace,479,Alfred Hermann Fried,Male,NA,1/2
+1911,Literature,581,Count Maurice (Mooris) Polidore Marie Bernhard Maeterlinck,Male,NA,1/1
+1912,Physics,17,Nils Gustaf Dalén,Male,Sweden,1/1
+1912,Chemistry,172,Victor Grignard,Male,France,1/2
+1912,Chemistry,173,Paul Sabatier,Male,France,1/2
+1912,Medicine,306,Alexis Carrel,Male,United States of America,1/1
+1912,Peace,480,Elihu Root,Male,NA,1/1
+1912,Literature,582,Gerhart Johann Robert Hauptmann,Male,NA,1/1
+1913,Physics,18,Heike Kamerlingh Onnes,Male,Netherlands,1/1
+1913,Chemistry,174,Alfred Werner,Male,Switzerland,1/1
+1913,Medicine,307,Charles Robert Richet,Male,France,1/1
+1913,Peace,481,Henri La Fontaine,Male,NA,1/1
+1913,Literature,583,Rabindranath Tagore,Male,NA,1/1
+1914,Physics,19,Max von Laue,Male,Germany,1/1
+1914,Chemistry,175,Theodore William Richards,Male,United States of America,1/1
+1914,Medicine,308,Robert Bárány,Male,Austria,1/1
+1915,Physics,20,Sir William Henry Bragg,Male,United Kingdom,1/2
+1915,Physics,21,William Lawrence Bragg,Male,United Kingdom,1/2
+1915,Chemistry,176,Richard Martin Willstätter,Male,Germany,1/1
+1915,Literature,584,Romain Rolland,Male,NA,1/1
+1916,Literature,585,Carl Gustaf Verner von Heidenstam,Male,NA,1/1
+1917,Physics,22,Charles Glover Barkla,Male,United Kingdom,1/1
+1917,Literature,586,Karl Adolph Gjellerup,Male,NA,1/2
+1917,Literature,587,Henrik Pontoppidan,Male,NA,1/2
+1918,Physics,23,Max Karl Ernst Ludwig Planck,Male,Germany,1/1
+1918,Chemistry,177,Fritz Haber,Male,Germany,1/1
+1919,Physics,24,Johannes Stark,Male,Germany,1/1
+1919,Medicine,309,Jules Bordet,Male,Belgium,1/1
+1919,Peace,483,Thomas Woodrow Wilson,Male,NA,1/1
+1919,Literature,588,Carl Friedrich Georg Spitteler,Male,NA,1/1
+1920,Physics,25,Charles Edouard Guillaume,Male,France,1/1
+1920,Chemistry,178,Walther Hermann Nernst,Male,Germany,1/1
+1920,Medicine,310,Schack August Steenberg Krogh,Male,Denmark,1/1
+1920,Peace,484,Léon Victor Auguste Bourgeois,Male,NA,1/1
+1920,Literature,589,Knut Pedersen Hamsun,Male,NA,1/1
+1921,Physics,26,Albert Einstein,Male,Germany,1/1
+1921,Chemistry,179,Frederick Soddy,Male,United Kingdom,1/1
+1921,Peace,485,Karl Hjalmar Branting,Male,NA,1/2
+1921,Peace,486,Christian Lous Lange,Male,NA,1/2
+1921,Literature,590,Anatole France,Male,NA,1/1
+1922,Physics,27,Niels Henrik David Bohr,Male,Denmark,1/1
+1922,Chemistry,180,Francis William Aston,Male,United Kingdom,1/1
+1922,Medicine,311,Archibald Vivian Hill,Male,United Kingdom,1/2
+1922,Medicine,312,Otto Fritz Meyerhof,Male,Germany,1/2
+1922,Peace,487,Fridtjof Nansen,Male,NA,1/1
+1922,Literature,592,Jacinto Benavente,Male,NA,1/1
+1923,Physics,28,Robert Andrews Millikan,Male,United States of America,1/1
+1923,Chemistry,181,Fritz Pregl,Male,Austria,1/1
+1923,Medicine,313,Frederick Grant Banting,Male,Canada,1/2
+1923,Medicine,314,John James Rickard Macleod,Male,Canada,1/2
+1923,Literature,593,William Butler Yeats,Male,NA,1/1
+1924,Physics,29,Karl Manne Georg Siegbahn,Male,Sweden,1/1
+1924,Medicine,315,Willem Einthoven,Male,Netherlands,1/1
+1924,Literature,594,Wladyslaw Stanislaw Reymont,Male,NA,1/1
+1925,Physics,30,James Franck,Male,Germany,1/2
+1925,Physics,31,Gustav Ludwig Hertz,Male,Germany,1/2
+1925,Chemistry,182,Richard Adolf Zsigmondy,Male,Germany,1/1
+1925,Peace,488,Sir Austen Chamberlain,Male,NA,1/2
+1925,Peace,489,Charles Gates Dawes,Male,NA,1/2
+1925,Literature,596,George Bernard Shaw,Male,NA,1/1
+1926,Physics,32,Jean Baptiste Perrin,Male,France,1/1
+1926,Chemistry,183,The (Theodor) Svedberg,Male,Sweden,1/1
+1926,Medicine,316,Johannes Andreas Grib Fibiger,Male,Denmark,1/1
+1926,Peace,490,Aristide Briand,Male,NA,1/2
+1926,Peace,491,Gustav Stresemann,Male,NA,1/2
+1926,Literature,597,Grazia Deledda,Female,NA,1/1
+1927,Physics,33,Arthur Holly Compton,Male,United States of America,1/2
+1927,Physics,34,Charles Thomson Rees Wilson,Male,United Kingdom,1/2
+1927,Chemistry,184,Heinrich Otto Wieland,Male,Germany,1/1
+1927,Medicine,317,Julius Wagner-Jauregg,Male,Austria,1/1
+1927,Peace,492,Ferdinand Buisson,Male,NA,1/2
+1927,Peace,493,Ludwig Quidde,Male,NA,1/2
+1927,Literature,600,Henri Bergson,Male,NA,1/1
+1928,Physics,35,Owen Willans Richardson,Male,United Kingdom,1/1
+1928,Chemistry,185,Adolf Otto Reinhold Windaus,Male,Germany,1/1
+1928,Medicine,318,Charles Jules Henri Nicolle,Male,NA,1/1
+1928,Literature,601,Sigrid Undset,Female,NA,1/1
+1929,Physics,36,Prince Louis-Victor Pierre Raymond de Broglie,Male,France,1/1
+1929,Chemistry,186,Arthur Harden,Male,United Kingdom,1/2
+1929,Chemistry,187,Hans Karl August Simon von Euler-Chelpin,Male,Sweden,1/2
+1929,Medicine,319,Christiaan Eijkman,Male,Netherlands,1/2
+1929,Medicine,320,Sir Frederick Gowland Hopkins,Male,United Kingdom,1/2
+1929,Peace,494,Frank Billings Kellogg,Male,NA,1/1
+1929,Literature,602,Thomas Mann,Male,NA,1/1
+1930,Physics,37,Sir Chandrasekhara Venkata Raman,Male,India,1/1
+1930,Chemistry,188,Hans Fischer,Male,Germany,1/1
+1930,Medicine,321,Karl Landsteiner,Male,United States of America,1/1
+1930,Peace,495,Lars Olof Jonathan (Nathan) Söderblom,Male,NA,1/1
+1930,Literature,603,Sinclair Lewis,Male,NA,1/1
+1931,Chemistry,189,Carl Bosch,Male,Germany,1/2
+1931,Chemistry,190,Friedrich Bergius,Male,Germany,1/2
+1931,Medicine,322,Otto Heinrich Warburg,Male,Germany,1/1
+1931,Peace,496,Jane Addams,Female,NA,1/2
+1931,Peace,497,Nicholas Murray Butler,Male,United States of America,1/2
+1931,Literature,604,Erik Axel Karlfeldt,Male,NA,1/1
+1932,Physics,38,Werner Karl Heisenberg,Male,Germany,1/1
+1932,Chemistry,191,Irving Langmuir,Male,United States of America,1/1
+1932,Medicine,323,Sir Charles Scott Sherrington,Male,United Kingdom,1/2
+1932,Medicine,324,Edgar Douglas Adrian,Male,United Kingdom,1/2
+1932,Literature,605,John Galsworthy,Male,NA,1/1
+1933,Physics,39,Erwin Schrödinger,Male,Germany,1/2
+1933,Physics,40,Paul Adrien Maurice Dirac,Male,United Kingdom,1/2
+1933,Medicine,325,Thomas Hunt Morgan,Male,United States of America,1/1
+1933,Peace,498,Sir Norman Angell (Ralph Lane),Male,NA,1/1
+1933,Literature,606,Ivan Alekseyevich Bunin,Male,NA,1/1
+1934,Chemistry,192,Harold Clayton Urey,Male,United States of America,1/1
+1934,Medicine,326,George Hoyt Whipple,Male,United States of America,1/3
+1934,Medicine,327,George Richards Minot,Male,United States of America,1/3
+1934,Medicine,328,William Parry Murphy,Male,United States of America,1/3
+1934,Peace,499,Arthur Henderson,Male,NA,1/1
+1934,Literature,607,Luigi Pirandello,Male,NA,1/1
+1935,Physics,41,James Chadwick,Male,United Kingdom,1/1
+1935,Chemistry,193,Frédéric Joliot,Male,France,1/2
+1935,Chemistry,194,Irène Joliot-Curie,Female,France,1/2
+1935,Medicine,329,Hans Spemann,Male,Germany,1/1
+1935,Peace,500,Carl von Ossietzky,Male,NA,1/1
+1936,Physics,42,Victor Franz Hess,Male,Austria,1/2
+1936,Physics,43,Carl David Anderson,Male,United States of America,1/2
+1936,Chemistry,195,Petrus (Peter) Josephus Wilhelmus Debye,Male,Germany,1/1
+1936,Medicine,330,Sir Henry Hallett Dale,Male,United Kingdom,1/2
+1936,Medicine,331,Otto Loewi,Male,Austria,1/2
+1936,Peace,501,Carlos Saavedra Lamas,Male,NA,1/1
+1936,Literature,608,Eugene Gladstone O'Neill,Male,NA,1/1
+1937,Physics,44,Clinton Joseph Davisson,Male,United States of America,1/2
+1937,Physics,45,George Paget Thomson,Male,United Kingdom,1/2
+1937,Chemistry,196,Walter Norman Haworth,Male,United Kingdom,1/2
+1937,Chemistry,197,Paul Karrer,Male,Switzerland,1/2
+1937,Medicine,332,Albert von Szent-Györgyi Nagyrápolt,Male,Hungary,1/1
+1937,Peace,502,"Cecil of Chelwood, Viscount (Lord Edgar Algernon Robert Gascoyne Cecil)",Male,NA,1/1
+1937,Literature,609,Roger Martin du Gard,Male,NA,1/1
+1938,Physics,46,Enrico Fermi,Male,Italy,1/1
+1938,Chemistry,198,Richard Kuhn,Male,Germany,1/1
+1938,Medicine,333,Corneille Jean François Heymans,Male,Belgium,1/1
+1938,Literature,610,Pearl Buck,Female,NA,1/1
+1939,Physics,47,Ernest Orlando Lawrence,Male,United States of America,1/1
+1939,Chemistry,199,Adolf Friedrich Johann Butenandt,Male,Germany,1/2
+1939,Chemistry,200,Leopold Ruzicka,Male,Switzerland,1/2
+1939,Medicine,334,Gerhard Domagk,Male,Germany,1/1
+1939,Literature,613,Frans Eemil Sillanpää,Male,NA,1/1
+1943,Physics,48,Otto Stern,Male,United States of America,1/1
+1943,Chemistry,201,George de Hevesy,Male,Sweden,1/1
+1943,Medicine,335,Henrik Carl Peter Dam,Male,Denmark,1/2
+1943,Medicine,336,Edward Adelbert Doisy,Male,United States of America,1/2
+1944,Physics,49,Isidor Isaac Rabi,Male,United States of America,1/1
+1944,Chemistry,202,Otto Hahn,Male,Germany,1/1
+1944,Medicine,337,Joseph Erlanger,Male,United States of America,1/2
+1944,Medicine,338,Herbert Spencer Gasser,Male,United States of America,1/2
+1944,Literature,614,Johannes Vilhelm Jensen,Male,NA,1/1
+1945,Physics,50,Wolfgang Pauli,Male,United States of America,1/1
+1945,Chemistry,203,Artturi Ilmari Virtanen,Male,Finland,1/1
+1945,Medicine,339,Sir Alexander Fleming,Male,United Kingdom,1/3
+1945,Medicine,340,Ernst Boris Chain,Male,United Kingdom,1/3
+1945,Medicine,341,Sir Howard Walter Florey,Male,United Kingdom,1/3
+1945,Peace,505,Cordell Hull,Male,NA,1/1
+1945,Literature,615,Gabriela Mistral,Female,NA,1/1
+1946,Physics,51,Percy Williams Bridgman,Male,United States of America,1/1
+1946,Chemistry,204,James Batcheller Sumner,Male,United States of America,1/2
+1946,Chemistry,205,John Howard Northrop,Male,United States of America,1/4
+1946,Chemistry,206,Wendell Meredith Stanley,Male,United States of America,1/4
+1946,Medicine,342,Hermann Joseph Muller,Male,United States of America,1/1
+1946,Peace,506,Emily Greene Balch,Female,NA,1/2
+1946,Peace,507,John Raleigh Mott,Male,NA,1/2
+1946,Literature,617,Hermann Hesse,Male,NA,1/1
+1947,Physics,52,Sir Edward Victor Appleton,Male,United Kingdom,1/1
+1947,Chemistry,207,Sir Robert Robinson,Male,United Kingdom,1/1
+1947,Medicine,343,Carl Ferdinand Cori,Male,United States of America,1/4
+1947,Medicine,344,"Gerty Theresa Cori, née Radnitz",Female,United States of America,1/4
+1947,Medicine,345,Bernardo Alberto Houssay,Male,Argentina,1/2
+1947,Literature,618,André Paul Guillaume Gide,Male,NA,1/1
+1948,Physics,53,Patrick Maynard Stuart Blackett,Male,United Kingdom,1/1
+1948,Chemistry,208,Arne Wilhelm Kaurin Tiselius,Male,Sweden,1/1
+1948,Medicine,346,Paul Hermann Müller,Male,Switzerland,1/1
+1948,Literature,619,Thomas Stearns Eliot,Male,NA,1/1
+1949,Physics,54,Hideki Yukawa,Male,Japan,1/1
+1949,Chemistry,209,William Francis Giauque,Male,United States of America,1/1
+1949,Medicine,347,Walter Rudolf Hess,Male,Switzerland,1/2
+1949,Medicine,348,Antonio Caetano de Abreu Freire Egas Moniz,Male,Portugal,1/2
+1949,Peace,510,Lord (John) Boyd Orr of Brechin,Male,NA,1/1
+1949,Literature,620,William Faulkner,Male,NA,1/1
+1950,Physics,55,Cecil Frank Powell,Male,United Kingdom,1/1
+1950,Chemistry,210,Otto Paul Hermann Diels,Male,Germany,1/2
+1950,Chemistry,211,Kurt Alder,Male,Germany,1/2
+1950,Medicine,349,Edward Calvin Kendall,Male,United States of America,1/3
+1950,Medicine,350,Tadeus Reichstein,Male,Switzerland,1/3
+1950,Medicine,351,Philip Showalter Hench,Male,United States of America,1/3
+1950,Peace,511,Ralph Bunche,Male,United States of America,1/1
+1950,Literature,621,Earl (Bertrand Arthur William) Russell,Male,NA,1/1
+1951,Physics,56,Sir John Douglas Cockcroft,Male,United Kingdom,1/2
+1951,Physics,57,Ernest Thomas Sinton Walton,Male,Ireland,1/2
+1951,Chemistry,212,Edwin Mattison McMillan,Male,United States of America,1/2
+1951,Chemistry,213,Glenn Theodore Seaborg,Male,United States of America,1/2
+1951,Medicine,352,Max Theiler,Male,United States of America,1/1
+1951,Peace,512,Léon Jouhaux,Male,NA,1/1
+1951,Literature,622,Pär Fabian Lagerkvist,Male,NA,1/1
+1952,Physics,58,Felix Bloch,Male,United States of America,1/2
+1952,Physics,59,Edward Mills Purcell,Male,United States of America,1/2
+1952,Chemistry,214,Archer John Porter Martin,Male,United Kingdom,1/2
+1952,Chemistry,215,Richard Laurence Millington Synge,Male,United Kingdom,1/2
+1952,Medicine,353,Selman Abraham Waksman,Male,United States of America,1/1
+1952,Peace,513,Albert Schweitzer,Male,NA,1/1
+1952,Literature,623,François Mauriac,Male,NA,1/1
+1953,Physics,60,Frits Zernike,Male,Netherlands,1/1
+1953,Chemistry,216,Hermann Staudinger,Male,Germany,1/1
+1953,Medicine,354,Hans Adolf Krebs,Male,United Kingdom,1/2
+1953,Medicine,355,Fritz Albert Lipmann,Male,United States of America,1/2
+1953,Peace,514,George Catlett Marshall,Male,NA,1/1
+1953,Literature,624,Sir Winston Leonard Spencer Churchill,Male,NA,1/1
+1954,Physics,61,Max Born,Male,United Kingdom,1/2
+1954,Physics,62,Walther Bothe,Male,Germany,1/2
+1954,Chemistry,217,Linus Carl Pauling,Male,United States of America,1/1
+1954,Medicine,356,John Franklin Enders,Male,United States of America,1/3
+1954,Medicine,357,Thomas Huckle Weller,Male,United States of America,1/3
+1954,Medicine,358,Frederick Chapman Robbins,Male,United States of America,1/3
+1954,Literature,625,Ernest Miller Hemingway,Male,NA,1/1
+1955,Physics,63,Willis Eugene Lamb,Male,United States of America,1/2
+1955,Physics,64,Polykarp Kusch,Male,United States of America,1/2
+1955,Chemistry,218,Vincent du Vigneaud,Male,United States of America,1/1
+1955,Medicine,359,Axel Hugo Theodor Theorell,Male,Sweden,1/1
+1955,Literature,626,Halldór Kiljan Laxness,Male,NA,1/1
+1956,Physics,65,William Bradford Shockley,Male,United States of America,1/3
+1956,Physics,66,John Bardeen,Male,United States of America,1/3
+1956,Physics,67,Walter Houser Brattain,Male,United States of America,1/3
+1956,Chemistry,219,Sir Cyril Norman Hinshelwood,Male,United Kingdom,1/2
+1956,Chemistry,220,Nikolay Nikolaevich Semenov,Male,Union of Soviet Socialist Republics,1/2
+1956,Medicine,360,André Frédéric Cournand,Male,United States of America,1/3
+1956,Medicine,361,Werner Forssmann,Male,Germany,1/3
+1956,Medicine,362,Dickinson W. Richards,Male,United States of America,1/3
+1956,Literature,627,Juan Ramón Jiménez,Male,NA,1/1
+1957,Physics,68,Chen Ning Yang,Male,United States of America,1/2
+1957,Physics,69,Tsung-Dao (T.D.) Lee,Male,United States of America,1/2
+1957,Chemistry,221,Lord (Alexander R.) Todd,Male,United Kingdom,1/1
+1957,Medicine,363,Daniel Bovet,Male,Italy,1/1
+1957,Peace,516,Lester Bowles Pearson,Male,NA,1/1
+1957,Literature,628,Albert Camus,Male,NA,1/1
+1958,Physics,70,Pavel Alekseyevich Cherenkov,Male,Union of Soviet Socialist Republics,1/3
+1958,Physics,71,Igor Yevgenyevich Tamm,Male,Union of Soviet Socialist Republics,1/3
+1958,Chemistry,222,Frederick Sanger,Male,United Kingdom,1/1
+1958,Medicine,364,George Wells Beadle,Male,United States of America,1/4
+1958,Medicine,365,Edward Lawrie Tatum,Male,United States of America,1/4
+1958,Medicine,366,Joshua Lederberg,Male,United States of America,1/2
+1958,Peace,517,Georges Pire,Male,NA,1/1
+1958,Literature,629,Boris Leonidovich Pasternak,Male,NA,1/1
+1958,Physics,721,Il´ja Mikhailovich Frank,Male,Union of Soviet Socialist Republics,1/3
+1959,Physics,72,Emilio Gino Segrè,Male,United States of America,1/2
+1959,Physics,73,Owen Chamberlain,Male,United States of America,1/2
+1959,Chemistry,223,Jaroslav Heyrovsky,Male,Czechoslovakia,1/1
+1959,Medicine,367,Severo Ochoa,Male,United States of America,1/2
+1959,Medicine,368,Arthur Kornberg,Male,United States of America,1/2
+1959,Peace,518,Philip J. Noel-Baker,Male,NA,1/1
+1959,Literature,630,Salvatore Quasimodo,Male,NA,1/1
+1960,Physics,74,Donald Arthur Glaser,Male,United States of America,1/1
+1960,Chemistry,224,Willard Frank Libby,Male,United States of America,1/1
+1960,Medicine,369,Sir Frank Macfarlane Burnet,Male,Australia,1/2
+1960,Medicine,370,Peter Brian Medawar,Male,United Kingdom,1/2
+1960,Peace,519,Albert John Lutuli,Male,NA,1/1
+1960,Literature,631,Saint-John Perse,Male,NA,1/1
+1961,Physics,75,Robert Hofstadter,Male,United States of America,1/2
+1961,Physics,76,Rudolf Ludwig Mössbauer,Male,Germany,1/2
+1961,Chemistry,225,Melvin Calvin,Male,United States of America,1/1
+1961,Medicine,371,Georg von Békésy,Male,United States of America,1/1
+1961,Peace,520,Dag Hjalmar Agne Carl Hammarskjöld,Male,NA,1/1
+1961,Literature,633,Ivo Andric,Male,NA,1/1
+1962,Physics,77,Lev Davidovich Landau,Male,Union of Soviet Socialist Republics,1/1
+1962,Peace,217,Linus Carl Pauling,Male,United States of America,1/1
+1962,Chemistry,226,Max Ferdinand Perutz,Male,United Kingdom,1/2
+1962,Chemistry,227,John Cowdery Kendrew,Male,United Kingdom,1/2
+1962,Medicine,372,Francis Harry Compton Crick,Male,United Kingdom,1/3
+1962,Medicine,373,James Dewey Watson,Male,United States of America,1/3
+1962,Medicine,374,Maurice Hugh Frederick Wilkins,Male,United Kingdom,1/3
+1962,Literature,634,John Steinbeck,Male,NA,1/1
+1963,Physics,78,Eugene Paul Wigner,Male,United States of America,1/2
+1963,Physics,79,Maria Goeppert Mayer,Female,United States of America,1/4
+1963,Physics,80,J. Hans D. Jensen,Male,Germany,1/4
+1963,Chemistry,228,Karl Ziegler,Male,Germany,1/2
+1963,Chemistry,229,Giulio Natta,Male,Italy,1/2
+1963,Medicine,375,Sir John Carew Eccles,Male,Australia,1/3
+1963,Medicine,376,Alan Lloyd Hodgkin,Male,United Kingdom,1/3
+1963,Medicine,377,Andrew Fielding Huxley,Male,United Kingdom,1/3
+1963,Literature,635,Giorgos Seferis,Male,NA,1/1
+1964,Physics,81,Charles Hard Townes,Male,United States of America,1/2
+1964,Physics,82,Nicolay Gennadiyevich Basov,Male,Union of Soviet Socialist Republics,1/4
+1964,Physics,83,Aleksandr Mikhailovich Prokhorov,Male,Union of Soviet Socialist Republics,1/4
+1964,Chemistry,230,Dorothy Crowfoot Hodgkin,Female,United Kingdom,1/1
+1964,Medicine,378,Konrad Bloch,Male,United States of America,1/2
+1964,Medicine,379,Feodor Lynen,Male,Germany,1/2
+1964,Peace,524,Martin Luther King Jr.,Male,NA,1/1
+1964,Literature,637,Jean-Paul Sartre,Male,NA,1/1
+1965,Physics,84,Sin-Itiro Tomonaga,Male,Japan,1/3
+1965,Physics,85,Julian Schwinger,Male,United States of America,1/3
+1965,Physics,86,Richard P. Feynman,Male,United States of America,1/3
+1965,Chemistry,231,Robert Burns Woodward,Male,United States of America,1/1
+1965,Medicine,380,François Jacob,Male,France,1/3
+1965,Medicine,381,André Lwoff,Male,France,1/3
+1965,Medicine,382,Jacques Monod,Male,France,1/3
+1965,Literature,638,Mikhail Aleksandrovich Sholokhov,Male,NA,1/1
+1966,Physics,87,Alfred Kastler,Male,France,1/1
+1966,Chemistry,232,Robert S. Mulliken,Male,United States of America,1/1
+1966,Medicine,383,Peyton Rous,Male,United States of America,1/2
+1966,Medicine,384,Charles Brenton Huggins,Male,United States of America,1/2
+1966,Literature,639,Shmuel Yosef Agnon,Male,NA,1/2
+1966,Literature,640,Nelly Sachs,Female,NA,1/2
+1967,Physics,88,Hans Albrecht Bethe,Male,United States of America,1/1
+1967,Chemistry,233,Manfred Eigen,Male,Germany,1/2
+1967,Chemistry,234,Ronald George Wreyford Norrish,Male,United Kingdom,1/4
+1967,Chemistry,235,George Porter,Male,United Kingdom,1/4
+1967,Medicine,385,Ragnar Granit,Male,Sweden,1/3
+1967,Medicine,386,Haldan Keffer Hartline,Male,United States of America,1/3
+1967,Medicine,387,George Wald,Male,United States of America,1/3
+1967,Literature,641,Miguel Angel Asturias,Male,NA,1/1
+1968,Physics,89,Luis Walter Alvarez,Male,United States of America,1/1
+1968,Chemistry,236,Lars Onsager,Male,United States of America,1/1
+1968,Medicine,388,Robert W. Holley,Male,United States of America,1/3
+1968,Medicine,389,Har Gobind Khorana,Male,United States of America,1/3
+1968,Medicine,390,Marshall W. Nirenberg,Male,United States of America,1/3
+1968,Peace,526,René Cassin,Male,NA,1/1
+1968,Literature,642,Yasunari Kawabata,Male,NA,1/1
+1969,Physics,90,Murray Gell-Mann,Male,United States of America,1/1
+1969,Chemistry,237,Derek H. R. Barton,Male,United Kingdom,1/2
+1969,Chemistry,238,Odd Hassel,Male,Norway,1/2
+1969,Medicine,391,Max Delbrück,Male,United States of America,1/3
+1969,Medicine,392,Alfred D. Hershey,Male,United States of America,1/3
+1969,Medicine,393,Salvador E. Luria,Male,United States of America,1/3
+1969,Literature,643,Samuel Beckett,Male,NA,1/1
+1969,Economics,677,Ragnar Frisch,Male,Norway,1/2
+1969,Economics,678,Jan Tinbergen,Male,Netherlands,1/2
+1970,Physics,91,Hannes Olof Gösta Alfvén,Male,Sweden,1/2
+1970,Physics,92,Louis Eugène Félix Néel,Male,France,1/2
+1970,Chemistry,239,Luis F. Leloir,Male,Argentina,1/1
+1970,Medicine,394,Sir Bernard Katz,Male,United Kingdom,1/3
+1970,Medicine,395,Ulf von Euler,Male,Sweden,1/3
+1970,Medicine,396,Julius Axelrod,Male,United States of America,1/3
+1970,Peace,528,Norman E. Borlaug,Male,NA,1/1
+1970,Literature,644,Aleksandr Isayevich Solzhenitsyn,Male,NA,1/1
+1970,Economics,679,Paul A. Samuelson,Male,United States of America,1/1
+1971,Physics,93,Dennis Gabor,Male,United Kingdom,1/1
+1971,Chemistry,240,Gerhard Herzberg,Male,Canada,1/1
+1971,Medicine,397,"Earl W. Sutherland, Jr.",Male,United States of America,1/1
+1971,Peace,529,Willy Brandt,Male,NA,1/1
+1971,Literature,645,Pablo Neruda,Male,NA,1/1
+1971,Economics,680,Simon Kuznets,Male,United States of America,1/1
+1972,Physics,66,John Bardeen,Male,United States of America,1/3
+1972,Physics,95,Leon Neil Cooper,Male,United States of America,1/3
+1972,Physics,96,John Robert Schrieffer,Male,United States of America,1/3
+1972,Chemistry,241,Christian B. Anfinsen,Male,United States of America,1/2
+1972,Chemistry,242,Stanford Moore,Male,United States of America,1/4
+1972,Chemistry,243,William H. Stein,Male,United States of America,1/4
+1972,Medicine,398,Gerald M. Edelman,Male,United States of America,1/2
+1972,Medicine,399,Rodney R. Porter,Male,United Kingdom,1/2
+1972,Literature,647,Heinrich Böll,Male,NA,1/1
+1972,Economics,681,John R. Hicks,Male,United Kingdom,1/2
+1972,Economics,682,Kenneth J. Arrow,Male,United States of America,1/2
+1973,Physics,97,Leo Esaki,Male,United States of America,1/4
+1973,Physics,98,Ivar Giaever,Male,United States of America,1/4
+1973,Physics,99,Brian David Josephson,Male,United Kingdom,1/2
+1973,Chemistry,244,Ernst Otto Fischer,Male,Germany,1/2
+1973,Chemistry,245,Geoffrey Wilkinson,Male,United Kingdom,1/2
+1973,Medicine,400,Karl von Frisch,Male,Germany,1/3
+1973,Medicine,401,Konrad Lorenz,Male,Austria,1/3
+1973,Medicine,402,Nikolaas Tinbergen,Male,United Kingdom,1/3
+1973,Peace,530,Henry A. Kissinger,Male,NA,1/2
+1973,Literature,648,Patrick White,Male,NA,1/1
+1973,Economics,683,Wassily Leontief,Male,United States of America,1/1
+1974,Physics,100,Sir Martin Ryle,Male,United Kingdom,1/2
+1974,Physics,101,Antony Hewish,Male,United Kingdom,1/2
+1974,Chemistry,246,Paul J. Flory,Male,United States of America,1/1
+1974,Medicine,403,Albert Claude,Male,Belgium,1/3
+1974,Medicine,404,Christian de Duve,Male,United States of America,1/3
+1974,Medicine,405,George E. Palade,Male,United States of America,1/3
+1974,Peace,532,Seán MacBride,Male,NA,1/2
+1974,Peace,533,Eisaku Sato,Male,NA,1/2
+1974,Literature,649,Eyvind Johnson,Male,NA,1/2
+1974,Literature,650,Harry Martinson,Male,NA,1/2
+1974,Economics,684,Gunnar Myrdal,Male,NA,1/2
+1974,Economics,685,Friedrich August von Hayek,Male,NA,1/2
+1975,Physics,102,Aage Niels Bohr,Male,Denmark,1/3
+1975,Physics,103,Ben Roy Mottelson,Male,Denmark,1/3
+1975,Physics,104,Leo James Rainwater,Male,United States of America,1/3
+1975,Chemistry,247,John Warcup Cornforth,Male,United Kingdom,1/2
+1975,Chemistry,248,Vladimir Prelog,Male,Switzerland,1/2
+1975,Medicine,406,David Baltimore,Male,United States of America,1/3
+1975,Medicine,407,Renato Dulbecco,Male,United Kingdom,1/3
+1975,Medicine,408,Howard Martin Temin,Male,United States of America,1/3
+1975,Peace,534,Andrei Dmitrievich Sakharov,Male,NA,1/1
+1975,Literature,651,Eugenio Montale,Male,NA,1/1
+1975,Economics,686,Leonid Vitaliyevich Kantorovich,Male,Union of Soviet Socialist Republics,1/2
+1975,Economics,687,Tjalling C. Koopmans,Male,United States of America,1/2
+1976,Physics,105,Burton Richter,Male,United States of America,1/2
+1976,Physics,106,Samuel Chao Chung Ting,Male,United States of America,1/2
+1976,Chemistry,249,William N. Lipscomb,Male,United States of America,1/1
+1976,Medicine,409,Baruch S. Blumberg,Male,United States of America,1/2
+1976,Medicine,410,D. Carleton Gajdusek,Male,United States of America,1/2
+1976,Peace,535,Betty Williams,Female,NA,1/2
+1976,Peace,536,Mairead Corrigan,Female,NA,1/2
+1976,Literature,652,Saul Bellow,Male,NA,1/1
+1976,Economics,688,Milton Friedman,Male,United States of America,1/1
+1977,Physics,107,Philip Warren Anderson,Male,United States of America,1/3
+1977,Physics,108,Sir Nevill Francis Mott,Male,United Kingdom,1/3
+1977,Physics,109,John Hasbrouck van Vleck,Male,United States of America,1/3
+1977,Chemistry,250,Ilya Prigogine,Male,Belgium,1/1
+1977,Medicine,411,Roger Guillemin,Male,United States of America,1/4
+1977,Medicine,412,Andrew V. Schally,Male,United States of America,1/4
+1977,Medicine,413,Rosalyn Yalow,Female,United States of America,1/2
+1977,Literature,653,Vicente Aleixandre,Male,NA,1/1
+1977,Economics,689,Bertil Ohlin,Male,Sweden,1/2
+1977,Economics,690,James E. Meade,Male,United Kingdom,1/2
+1978,Physics,110,Pyotr Leonidovich Kapitsa,Male,Union of Soviet Socialist Republics,1/2
+1978,Physics,111,Arno Allan Penzias,Male,United States of America,1/4
+1978,Physics,112,Robert Woodrow Wilson,Male,United States of America,1/4
+1978,Chemistry,251,Peter D. Mitchell,Male,United Kingdom,1/1
+1978,Medicine,414,Werner Arber,Male,Switzerland,1/3
+1978,Medicine,415,Daniel Nathans,Male,United States of America,1/3
+1978,Medicine,416,Hamilton O. Smith,Male,United States of America,1/3
+1978,Peace,538,Mohamed Anwar al-Sadat,Male,NA,1/2
+1978,Peace,539,Menachem Begin,Male,NA,1/2
+1978,Literature,654,Isaac Bashevis Singer,Male,NA,1/1
+1978,Economics,691,Herbert A. Simon,Male,United States of America,1/1
+1979,Physics,113,Sheldon Lee Glashow,Male,United States of America,1/3
+1979,Physics,114,Abdus Salam,Male,Italy,1/3
+1979,Physics,115,Steven Weinberg,Male,United States of America,1/3
+1979,Chemistry,252,Herbert C. Brown,Male,United States of America,1/2
+1979,Chemistry,253,Georg Wittig,Male,Germany,1/2
+1979,Medicine,417,Allan M. Cormack,Male,United States of America,1/2
+1979,Medicine,418,Godfrey N. Hounsfield,Male,United Kingdom,1/2
+1979,Literature,655,Odysseus Elytis,Male,NA,1/1
+1979,Economics,692,Theodore W. Schultz,Male,United States of America,1/2
+1979,Economics,693,Sir Arthur Lewis,Male,United States of America,1/2
+1980,Physics,116,James Watson Cronin,Male,United States of America,1/2
+1980,Physics,117,Val Logsdon Fitch,Male,United States of America,1/2
+1980,Chemistry,222,Frederick Sanger,Male,United Kingdom,1/4
+1980,Chemistry,254,Paul Berg,Male,United States of America,1/2
+1980,Chemistry,255,Walter Gilbert,Male,United States of America,1/4
+1980,Medicine,419,Baruj Benacerraf,Male,United States of America,1/3
+1980,Medicine,420,Jean Dausset,Male,France,1/3
+1980,Medicine,421,George D. Snell,Male,United States of America,1/3
+1980,Peace,541,Adolfo Pérez Esquivel,Male,NA,1/1
+1980,Literature,657,Czeslaw Milosz,Male,NA,1/1
+1980,Economics,694,Lawrence R. Klein,Male,United States of America,1/1
+1981,Physics,118,Nicolaas Bloembergen,Male,United States of America,1/4
+1981,Physics,119,Arthur Leonard Schawlow,Male,United States of America,1/4
+1981,Physics,120,Kai M. Siegbahn,Male,Sweden,1/2
+1981,Chemistry,257,Kenichi Fukui,Male,Japan,1/2
+1981,Chemistry,258,Roald Hoffmann,Male,United States of America,1/2
+1981,Medicine,422,Roger W. Sperry,Male,United States of America,1/2
+1981,Medicine,423,David H. Hubel,Male,United States of America,1/4
+1981,Medicine,424,Torsten N. Wiesel,Male,United States of America,1/4
+1981,Literature,658,Elias Canetti,Male,NA,1/1
+1981,Economics,695,James Tobin,Male,United States of America,1/1
+1982,Physics,121,Kenneth G. Wilson,Male,United States of America,1/1
+1982,Chemistry,259,Aaron Klug,Male,United Kingdom,1/1
+1982,Medicine,425,Sune K. Bergström,Male,Sweden,1/3
+1982,Medicine,426,Bengt I. Samuelsson,Male,Sweden,1/3
+1982,Medicine,427,John R. Vane,Male,United Kingdom,1/3
+1982,Peace,543,Alva Myrdal,Female,NA,1/2
+1982,Peace,544,Alfonso García Robles,Male,NA,1/2
+1982,Literature,659,Gabriel García Márquez,Male,NA,1/1
+1982,Economics,696,George J. Stigler,Male,United States of America,1/1
+1983,Physics,122,Subramanyan Chandrasekhar,Male,United States of America,1/2
+1983,Physics,123,William Alfred Fowler,Male,United States of America,1/2
+1983,Chemistry,260,Henry Taube,Male,United States of America,1/1
+1983,Medicine,428,Barbara McClintock,Female,United States of America,1/1
+1983,Peace,545,Lech Walesa,Male,NA,1/1
+1983,Literature,660,William Golding,Male,NA,1/1
+1983,Economics,697,Gerard Debreu,Male,United States of America,1/1
+1984,Physics,124,Carlo Rubbia,Male,Switzerland,1/2
+1984,Physics,125,Simon van der Meer,Male,Switzerland,1/2
+1984,Chemistry,261,Robert Bruce Merrifield,Male,United States of America,1/1
+1984,Medicine,429,Niels K. Jerne,Male,Switzerland,1/3
+1984,Medicine,430,Georges J.F. Köhler,Male,Switzerland,1/3
+1984,Medicine,431,César Milstein,Male,United Kingdom,1/3
+1984,Peace,546,Desmond Mpilo Tutu,Male,NA,1/1
+1984,Literature,661,Jaroslav Seifert,Male,NA,1/1
+1984,Economics,698,Richard Stone,Male,United Kingdom,1/1
+1985,Physics,126,Klaus von Klitzing,Male,Germany,1/1
+1985,Chemistry,262,Herbert A. Hauptman,Male,United States of America,1/2
+1985,Chemistry,263,Jerome Karle,Male,United States of America,1/2
+1985,Medicine,432,Michael S. Brown,Male,United States of America,1/2
+1985,Medicine,433,Joseph L. Goldstein,Male,United States of America,1/2
+1985,Literature,662,Claude Simon,Male,NA,1/1
+1985,Economics,699,Franco Modigliani,Male,United States of America,1/1
+1986,Physics,127,Ernst Ruska,Male,Germany,1/2
+1986,Physics,128,Gerd Binnig,Male,Switzerland,1/4
+1986,Physics,129,Heinrich Rohrer,Male,Switzerland,1/4
+1986,Chemistry,264,Dudley R. Herschbach,Male,United States of America,1/3
+1986,Chemistry,265,Yuan T. Lee,Male,United States of America,1/3
+1986,Chemistry,266,John C. Polanyi,Male,Canada,1/3
+1986,Medicine,434,Stanley Cohen,Male,United States of America,1/2
+1986,Medicine,435,Rita Levi-Montalcini,Female,Italy,1/2
+1986,Peace,548,Elie Wiesel,Male,NA,1/1
+1986,Literature,663,Wole Soyinka,Male,NA,1/1
+1986,Economics,700,James M. Buchanan Jr.,Male,United States of America,1/1
+1987,Physics,130,J. Georg Bednorz,Male,Switzerland,1/2
+1987,Physics,131,K. Alexander Müller,Male,Switzerland,1/2
+1987,Chemistry,267,Donald J. Cram,Male,United States of America,1/3
+1987,Chemistry,268,Jean-Marie Lehn,Male,France,1/3
+1987,Chemistry,269,Charles J. Pedersen,Male,United States of America,1/3
+1987,Medicine,436,Susumu Tonegawa,Male,United States of America,1/1
+1987,Peace,549,Oscar Arias Sánchez,Male,NA,1/1
+1987,Literature,664,Joseph Brodsky,Male,NA,1/1
+1987,Economics,701,Robert M. Solow,Male,United States of America,1/1
+1988,Physics,132,Leon M. Lederman,Male,United States of America,1/3
+1988,Physics,133,Melvin Schwartz,Male,United States of America,1/3
+1988,Physics,134,Jack Steinberger,Male,Switzerland,1/3
+1988,Chemistry,270,Johann Deisenhofer,Male,United States of America,1/3
+1988,Chemistry,271,Robert Huber,Male,Germany,1/3
+1988,Chemistry,272,Hartmut Michel,Male,Germany,1/3
+1988,Medicine,437,Sir James W. Black,Male,United Kingdom,1/3
+1988,Medicine,438,Gertrude B. Elion,Female,United States of America,1/3
+1988,Medicine,439,George H. Hitchings,Male,United States of America,1/3
+1988,Literature,665,Naguib Mahfouz,Male,NA,1/1
+1988,Economics,702,Maurice Allais,Male,France,1/1
+1989,Physics,135,Norman F. Ramsey,Male,United States of America,1/2
+1989,Physics,136,Hans G. Dehmelt,Male,United States of America,1/4
+1989,Physics,137,Wolfgang Paul,Male,Germany,1/4
+1989,Chemistry,273,Sidney Altman,Male,United States of America,1/2
+1989,Chemistry,274,Thomas R. Cech,Male,United States of America,1/2
+1989,Medicine,440,J. Michael Bishop,Male,United States of America,1/2
+1989,Medicine,441,Harold E. Varmus,Male,United States of America,1/2
+1989,Literature,666,Camilo José Cela,Male,NA,1/1
+1989,Economics,703,Trygve Haavelmo,Male,Norway,1/1
+1990,Physics,138,Jerome I. Friedman,Male,United States of America,1/3
+1990,Physics,139,Henry W. Kendall,Male,United States of America,1/3
+1990,Physics,140,Richard E. Taylor,Male,United States of America,1/3
+1990,Chemistry,275,Elias James Corey,Male,United States of America,1/1
+1990,Medicine,442,Joseph E. Murray,Male,United States of America,1/2
+1990,Medicine,443,E. Donnall Thomas,Male,United States of America,1/2
+1990,Peace,552,Mikhail Sergeyevich Gorbachev,Male,NA,1/1
+1990,Literature,667,Octavio Paz,Male,NA,1/1
+1990,Economics,704,Harry M. Markowitz,Male,United States of America,1/3
+1990,Economics,705,Merton H. Miller,Male,United States of America,1/3
+1990,Economics,706,William F. Sharpe,Male,United States of America,1/3
+1991,Physics,141,Pierre-Gilles de Gennes,Male,France,1/1
+1991,Chemistry,276,Richard R. Ernst,Male,Switzerland,1/1
+1991,Medicine,444,Erwin Neher,Male,Germany,1/2
+1991,Medicine,445,Bert Sakmann,Male,Germany,1/2
+1991,Literature,668,Nadine Gordimer,Female,NA,1/1
+1991,Economics,707,Ronald H. Coase,Male,United States of America,1/1
+1992,Physics,142,Georges Charpak,Male,France,1/1
+1992,Chemistry,277,Rudolph A. Marcus,Male,United States of America,1/1
+1992,Medicine,446,Edmond H. Fischer,Male,United States of America,1/2
+1992,Medicine,447,Edwin G. Krebs,Male,United States of America,1/2
+1992,Peace,554,Rigoberta Menchú Tum,Female,NA,1/1
+1992,Literature,669,Derek Walcott,Male,NA,1/1
+1992,Economics,708,Gary S. Becker,Male,United States of America,1/1
+1993,Physics,143,Russell A. Hulse,Male,United States of America,1/2
+1993,Physics,144,Joseph H. Taylor Jr.,Male,United States of America,1/2
+1993,Chemistry,278,Kary B. Mullis,Male,United States of America,1/2
+1993,Chemistry,279,Michael Smith,Male,Canada,1/2
+1993,Medicine,448,Richard J. Roberts,Male,United States of America,1/2
+1993,Medicine,449,Phillip A. Sharp,Male,United States of America,1/2
+1993,Peace,555,Nelson Mandela,Male,NA,1/2
+1993,Peace,556,Frederik Willem de Klerk,Male,NA,1/2
+1993,Literature,670,Toni Morrison,Female,NA,1/1
+1993,Economics,709,Robert W. Fogel,Male,United States of America,1/2
+1993,Economics,710,Douglass C. North,Male,United States of America,1/2
+1994,Physics,145,Bertram N. Brockhouse,Male,Canada,1/2
+1994,Physics,146,Clifford G. Shull,Male,United States of America,1/2
+1994,Chemistry,280,George A. Olah,Male,United States of America,1/1
+1994,Medicine,450,Alfred G. Gilman,Male,United States of America,1/2
+1994,Medicine,451,Martin Rodbell,Male,United States of America,1/2
+1994,Peace,557,Yasser Arafat,Male,NA,1/3
+1994,Peace,558,Shimon Peres,Male,NA,1/3
+1994,Peace,559,Yitzhak Rabin,Male,NA,1/3
+1994,Literature,671,Kenzaburo Oe,Male,NA,1/1
+1994,Economics,711,John C. Harsanyi,Male,United States of America,1/3
+1994,Economics,712,John F. Nash Jr.,Male,United States of America,1/3
+1994,Economics,713,Reinhard Selten,Male,Germany,1/3
+1995,Physics,147,Martin L. Perl,Male,United States of America,1/2
+1995,Physics,148,Frederick Reines,Male,United States of America,1/2
+1995,Chemistry,281,Paul J. Crutzen,Male,Germany,1/3
+1995,Chemistry,282,Mario J. Molina,Male,United States of America,1/3
+1995,Chemistry,283,F. Sherwood Rowland,Male,United States of America,1/3
+1995,Medicine,452,Edward B. Lewis,Male,United States of America,1/3
+1995,Medicine,453,Christiane Nüsslein-Volhard,Female,Germany,1/3
+1995,Medicine,454,Eric F. Wieschaus,Male,United States of America,1/3
+1995,Peace,560,Joseph Rotblat,Male,NA,1/2
+1995,Literature,672,Seamus Heaney,Male,NA,1/1
+1995,Economics,714,Robert E. Lucas Jr.,Male,United States of America,1/1
+1996,Physics,149,David M. Lee,Male,United States of America,1/3
+1996,Physics,150,Douglas D. Osheroff,Male,United States of America,1/3
+1996,Physics,151,Robert C. Richardson,Male,United States of America,1/3
+1996,Chemistry,284,Robert F. Curl Jr.,Male,United States of America,1/3
+1996,Chemistry,285,Sir Harold W. Kroto,Male,United Kingdom,1/3
+1996,Chemistry,286,Richard E. Smalley,Male,United States of America,1/3
+1996,Medicine,455,Peter C. Doherty,Male,United States of America,1/2
+1996,Medicine,456,Rolf M. Zinkernagel,Male,Switzerland,1/2
+1996,Peace,562,Carlos Filipe Ximenes Belo,Male,NA,1/2
+1996,Peace,563,José Ramos-Horta,Male,NA,1/2
+1996,Literature,673,Wislawa Szymborska,Female,NA,1/1
+1996,Economics,715,James A. Mirrlees,Male,United Kingdom,1/2
+1996,Economics,716,William Vickrey,Male,United States of America,1/2
+1997,Physics,152,Steven Chu,Male,United States of America,1/3
+1997,Physics,153,Claude Cohen-Tannoudji,Male,France,1/3
+1997,Physics,154,William D. Phillips,Male,United States of America,1/3
+1997,Chemistry,287,Paul D. Boyer,Male,United States of America,1/4
+1997,Chemistry,288,John E. Walker,Male,United Kingdom,1/4
+1997,Chemistry,289,Jens C. Skou,Male,Denmark,1/2
+1997,Medicine,457,Stanley B. Prusiner,Male,United States of America,1/1
+1997,Peace,565,Jody Williams,Female,NA,1/2
+1997,Literature,674,Dario Fo,Male,NA,1/1
+1997,Economics,717,Robert C. Merton,Male,United States of America,1/2
+1997,Economics,718,Myron S. Scholes,Male,United States of America,1/2
+1998,Physics,155,Robert B. Laughlin,Male,United States of America,1/3
+1998,Physics,156,Horst L. Störmer,Male,United States of America,1/3
+1998,Physics,157,Daniel C. Tsui,Male,United States of America,1/3
+1998,Chemistry,290,Walter Kohn,Male,United States of America,1/2
+1998,Chemistry,291,John A. Pople,Male,United States of America,1/2
+1998,Medicine,458,Robert F. Furchgott,Male,United States of America,1/3
+1998,Medicine,459,Louis J. Ignarro,Male,United States of America,1/3
+1998,Medicine,460,Ferid Murad,Male,United States of America,1/3
+1998,Peace,566,John Hume,Male,NA,1/2
+1998,Peace,567,David Trimble,Male,NA,1/2
+1998,Literature,675,José Saramago,Male,NA,1/1
+1998,Economics,719,Amartya Sen,Male,United Kingdom,1/1
+1999,Physics,158,Gerardus 't Hooft,Male,Netherlands,1/2
+1999,Physics,159,Martinus J.G. Veltman,Male,Netherlands,1/2
+1999,Chemistry,292,Ahmed H. Zewail,Male,United States of America,1/1
+1999,Medicine,461,Günter Blobel,Male,United States of America,1/1
+1999,Literature,676,Günter Grass,Male,NA,1/1
+1999,Economics,720,Robert A. Mundell,Male,United States of America,1/1
+2000,Medicine,722,Arvid Carlsson,Male,Sweden,1/3
+2000,Medicine,723,Paul Greengard,Male,United States of America,1/3
+2000,Medicine,724,Eric R. Kandel,Male,United States of America,1/3
+2000,Peace,725,Kim Dae-jung,Male,NA,1/1
+2000,Physics,726,Zhores I. Alferov,Male,Russia,1/4
+2000,Physics,727,Herbert Kroemer,Male,United States of America,1/4
+2000,Physics,728,Jack S. Kilby,Male,United States of America,1/2
+2000,Chemistry,729,Alan J. Heeger,Male,United States of America,1/3
+2000,Chemistry,730,Alan G. MacDiarmid,Male,United States of America,1/3
+2000,Chemistry,731,Hideki Shirakawa,Male,Japan,1/3
+2000,Economics,732,James J. Heckman,Male,United States of America,1/2
+2000,Economics,733,Daniel L. McFadden,Male,United States of America,1/2
+2000,Literature,734,Gao Xingjian,Male,NA,1/1
+2001,Medicine,735,Leland H. Hartwell,Male,United States of America,1/3
+2001,Medicine,736,Tim Hunt,Male,United Kingdom,1/3
+2001,Medicine,737,Sir Paul M. Nurse,Male,United Kingdom,1/3
+2001,Physics,738,Eric A. Cornell,Male,United States of America,1/3
+2001,Physics,739,Wolfgang Ketterle,Male,United States of America,1/3
+2001,Physics,740,Carl E. Wieman,Male,United States of America,1/3
+2001,Chemistry,741,William S. Knowles,Male,United States of America,1/4
+2001,Chemistry,742,Ryoji Noyori,Male,Japan,1/4
+2001,Chemistry,743,K. Barry Sharpless,Male,United States of America,1/2
+2001,Economics,744,George A. Akerlof,Male,United States of America,1/3
+2001,Economics,745,A. Michael Spence,Male,United States of America,1/3
+2001,Economics,746,Joseph E. Stiglitz,Male,United States of America,1/3
+2001,Literature,747,Sir Vidiadhar Surajprasad Naipaul,Male,NA,1/1
+2001,Peace,749,Kofi Annan,Male,NA,1/2
+2002,Medicine,750,Sydney Brenner,Male,United States of America,1/3
+2002,Medicine,751,H. Robert Horvitz,Male,United States of America,1/3
+2002,Medicine,752,John E. Sulston,Male,United Kingdom,1/3
+2002,Physics,753,Raymond Davis Jr.,Male,United States of America,1/4
+2002,Physics,754,Masatoshi Koshiba,Male,Japan,1/4
+2002,Physics,755,Riccardo Giacconi,Male,United States of America,1/2
+2002,Chemistry,756,John B. Fenn,Male,United States of America,1/4
+2002,Chemistry,757,Koichi Tanaka,Male,Japan,1/4
+2002,Chemistry,758,Kurt Wüthrich,Male,Switzerland,1/2
+2002,Economics,759,Daniel Kahneman,Male,United States of America,1/2
+2002,Economics,760,Vernon L. Smith,Male,United States of America,1/2
+2002,Literature,761,Imre Kertész,Male,NA,1/1
+2002,Peace,762,Jimmy Carter,Male,NA,1/1
+2003,Literature,763,John M. Coetzee,Male,NA,1/1
+2003,Medicine,764,Paul C. Lauterbur,Male,United States of America,1/2
+2003,Medicine,765,Sir Peter Mansfield,Male,United Kingdom,1/2
+2003,Physics,766,Alexei A. Abrikosov,Male,United States of America,1/3
+2003,Physics,767,Vitaly L. Ginzburg,Male,Russia,1/3
+2003,Physics,768,Anthony J. Leggett,Male,United States of America,1/3
+2003,Chemistry,769,Peter Agre,Male,United States of America,1/2
+2003,Chemistry,770,Roderick MacKinnon,Male,United States of America,1/2
+2003,Economics,771,Robert F. Engle III,Male,United States of America,1/2
+2003,Economics,772,Clive W.J. Granger,Male,United States of America,1/2
+2003,Peace,773,Shirin Ebadi,Female,NA,1/1
+2004,Medicine,774,Richard Axel,Male,United States of America,1/2
+2004,Medicine,775,Linda B. Buck,Female,United States of America,1/2
+2004,Physics,776,David J. Gross,Male,United States of America,1/3
+2004,Physics,777,H. David Politzer,Male,United States of America,1/3
+2004,Physics,778,Frank Wilczek,Male,United States of America,1/3
+2004,Chemistry,779,Aaron Ciechanover,Male,Israel,1/3
+2004,Chemistry,780,Avram Hershko,Male,Israel,1/3
+2004,Chemistry,781,Irwin Rose,Male,United States of America,1/3
+2004,Literature,782,Elfriede Jelinek,Female,NA,1/1
+2004,Peace,783,Wangari Muta Maathai,Female,NA,1/1
+2004,Economics,786,Finn E. Kydland,Male,United States of America,1/2
+2004,Economics,787,Edward C. Prescott,Male,United States of America,1/2
+2005,Medicine,789,Barry J. Marshall,Male,Australia,1/2
+2005,Medicine,790,J. Robin Warren,Male,Australia,1/2
+2005,Physics,791,Roy J. Glauber,Male,United States of America,1/2
+2005,Physics,792,John L. Hall,Male,United States of America,1/4
+2005,Physics,793,Theodor W. Hänsch,Male,Germany,1/4
+2005,Chemistry,794,Yves Chauvin,Male,France,1/3
+2005,Chemistry,795,Robert H. Grubbs,Male,United States of America,1/3
+2005,Chemistry,796,Richard R. Schrock,Male,United States of America,1/3
+2005,Peace,798,Mohamed ElBaradei,Male,NA,1/2
+2005,Economics,799,Robert J. Aumann,Male,Israel,1/2
+2005,Economics,800,Thomas C. Schelling,Male,United States of America,1/2
+2005,Literature,801,Harold Pinter,Male,NA,1/1
+2006,Medicine,802,Andrew Z. Fire,Male,United States of America,1/2
+2006,Medicine,803,Craig C. Mello,Male,United States of America,1/2
+2006,Physics,804,John C. Mather,Male,United States of America,1/2
+2006,Physics,805,George F. Smoot,Male,United States of America,1/2
+2006,Chemistry,806,Roger D. Kornberg,Male,United States of America,1/1
+2006,Economics,807,Edmund S. Phelps,Male,United States of America,1/1
+2006,Literature,808,Orhan Pamuk,Male,NA,1/1
+2006,Peace,809,Muhammad Yunus,Male,NA,1/2
+2007,Medicine,811,Mario R. Capecchi,Male,United States of America,1/3
+2007,Medicine,812,Sir Martin J. Evans,Male,United Kingdom,1/3
+2007,Medicine,813,Oliver Smithies,Male,United States of America,1/3
+2007,Physics,814,Albert Fert,Male,France,1/2
+2007,Physics,815,Peter Grünberg,Male,Germany,1/2
+2007,Chemistry,816,Gerhard Ertl,Male,Germany,1/1
+2007,Literature,817,Doris Lessing,Female,NA,1/1
+2007,Peace,819,Albert Arnold (Al) Gore Jr.,Male,NA,1/2
+2007,Economics,820,Leonid Hurwicz,Male,United States of America,1/3
+2007,Economics,821,Eric S. Maskin,Male,United States of America,1/3
+2007,Economics,822,Roger B. Myerson,Male,United States of America,1/3
+2008,Medicine,823,Harald zur Hausen,Male,Germany,1/2
+2008,Medicine,824,Françoise Barré-Sinoussi,Female,France,1/4
+2008,Medicine,825,Luc Montagnier,Male,France,1/4
+2008,Physics,826,Yoichiro Nambu,Male,United States of America,1/2
+2008,Physics,827,Makoto Kobayashi,Male,Japan,1/4
+2008,Physics,828,Toshihide Maskawa,Male,Japan,1/4
+2008,Chemistry,829,Osamu Shimomura,Male,United States of America,1/3
+2008,Chemistry,830,Martin Chalfie,Male,United States of America,1/3
+2008,Chemistry,831,Roger Y. Tsien,Male,United States of America,1/3
+2008,Literature,832,Jean-Marie Gustave Le Clézio,Male,NA,1/1
+2008,Peace,833,Martti Ahtisaari,Male,NA,1/1
+2008,Economics,834,Paul Krugman,Male,United States of America,1/1
+2009,Medicine,835,Elizabeth H. Blackburn,Female,United States of America,1/3
+2009,Medicine,836,Carol W. Greider,Female,United States of America,1/3
+2009,Medicine,837,Jack W. Szostak,Male,United States of America,1/3
+2009,Physics,838,Charles Kuen Kao,Male,United Kingdom,1/2
+2009,Physics,839,Willard S. Boyle,Male,United States of America,1/4
+2009,Physics,840,George E. Smith,Male,United States of America,1/4
+2009,Chemistry,841,Venkatraman Ramakrishnan,Male,United Kingdom,1/3
+2009,Chemistry,842,Thomas A. Steitz,Male,United States of America,1/3
+2009,Chemistry,843,Ada E. Yonath,Female,Israel,1/3
+2009,Literature,844,Herta Müller,Female,NA,1/1
+2009,Peace,845,Barack H. Obama,Male,NA,1/1
+2009,Economics,846,Elinor Ostrom,Female,United States of America,1/2
+2009,Economics,847,Oliver E. Williamson,Male,United States of America,1/2
+2010,Medicine,848,Robert G. Edwards,Male,United Kingdom,1/1
+2010,Physics,849,Andre Geim,Male,United Kingdom,1/2
+2010,Physics,850,Konstantin Novoselov,Male,United Kingdom,1/2
+2010,Chemistry,851,Richard F. Heck,Male,United States of America,1/3
+2010,Chemistry,852,Ei-ichi Negishi,Male,United States of America,1/3
+2010,Chemistry,853,Akira Suzuki,Male,Japan,1/3
+2010,Literature,854,Mario Vargas Llosa,Male,NA,1/1
+2010,Peace,855,Liu Xiaobo,Male,NA,1/1
+2010,Economics,856,Peter A. Diamond,Male,United States of America,1/3
+2010,Economics,857,Dale T. Mortensen,Male,United States of America,1/3
+2010,Economics,858,Christopher A. Pissarides,Male,United Kingdom,1/3
+2011,Medicine,861,Bruce A. Beutler,Male,United States of America,1/4
+2011,Medicine,862,Jules A. Hoffmann,Male,France,1/4
+2011,Medicine,863,Ralph M. Steinman,Male,United States of America,1/2
+2011,Physics,864,Saul Perlmutter,Male,United States of America,1/2
+2011,Physics,865,Brian P. Schmidt,Male,Australia,1/4
+2011,Physics,866,Adam G. Riess,Male,United States of America,1/4
+2011,Chemistry,867,Dan Shechtman,Male,Israel,1/1
+2011,Literature,868,Tomas Tranströmer,Male,NA,1/1
+2011,Peace,869,Ellen Johnson Sirleaf,Female,NA,1/3
+2011,Peace,870,Leymah Gbowee,Female,NA,1/3
+2011,Peace,871,Tawakkol Karman,Female,NA,1/3
+2011,Economics,872,Thomas J. Sargent,Male,United States of America,1/2
+2011,Economics,873,Christopher A. Sims,Male,United States of America,1/2
+2012,Medicine,874,Sir John B. Gurdon,Male,United Kingdom,1/2
+2012,Medicine,875,Shinya Yamanaka,Male,Japan,1/2
+2012,Physics,876,Serge Haroche,Male,France,1/2
+2012,Physics,877,David J. Wineland,Male,United States of America,1/2
+2012,Chemistry,878,Robert J. Lefkowitz,Male,NA,1/2
+2012,Chemistry,879,Brian K. Kobilka,Male,United States of America,1/2
+2012,Literature,880,Mo Yan,Male,NA,1/1
+2012,Economics,882,Alvin E. Roth,Male,United States of America,1/2
+2012,Economics,883,Lloyd S. Shapley,Male,United States of America,1/2
+2013,Medicine,884,James E. Rothman,Male,United States of America,1/3
+2013,Medicine,885,Randy W. Schekman,Male,United States of America,1/3
+2013,Medicine,886,Thomas C. Südhof,Male,United States of America,1/3
+2013,Physics,887,François Englert,Male,Belgium,1/2
+2013,Physics,888,Peter W. Higgs,Male,United Kingdom,1/2
+2013,Chemistry,889,Martin Karplus,Male,France,1/3
+2013,Chemistry,890,Michael Levitt,Male,United States of America,1/3
+2013,Chemistry,891,Arieh Warshel,Male,United States of America,1/3
+2013,Literature,892,Alice Munro,Female,NA,1/1
+2013,Economics,894,Eugene F. Fama,Male,United States of America,1/3
+2013,Economics,895,Lars Peter Hansen,Male,United States of America,1/3
+2013,Economics,896,Robert J. Shiller,Male,United States of America,1/3
+2014,Medicine,903,John O'Keefe,Male,United Kingdom,1/2
+2014,Medicine,904,May-Britt Moser,Female,Norway,1/4
+2014,Medicine,905,Edvard I. Moser,Male,Norway,1/4
+2014,Physics,906,Isamu Akasaki,Male,Japan,1/3
+2014,Physics,907,Hiroshi Amano,Male,Japan,1/3
+2014,Physics,908,Shuji Nakamura,Male,United States of America,1/3
+2014,Chemistry,909,Eric Betzig,Male,United States of America,1/3
+2014,Chemistry,910,Stefan W. Hell,Male,Germany,1/3
+2014,Chemistry,911,William E. Moerner,Male,United States of America,1/3
+2014,Literature,912,Patrick Modiano,Male,NA,1/1
+2014,Peace,913,Kailash Satyarthi,Male,NA,1/2
+2014,Peace,914,Malala Yousafzai,Female,NA,1/2
+2014,Economics,915,Jean Tirole,Male,France,1/1
+2015,Medicine,916,William C. Campbell,Male,United States of America,1/4
+2015,Medicine,917,Satoshi Ōmura,Male,Japan,1/4
+2015,Medicine,918,Youyou Tu,Female,China,1/2
+2015,Physics,919,Takaaki Kajita,Male,Japan,1/2
+2015,Physics,920,Arthur B. McDonald,Male,Canada,1/2
+2015,Chemistry,921,Tomas Lindahl,Male,United Kingdom,1/3
+2015,Chemistry,922,Paul Modrich,Male,United States of America,1/3
+2015,Chemistry,923,Aziz Sancar,Male,United States of America,1/3
+2015,Literature,924,Svetlana Alexievich,Female,NA,1/1
+2015,Economics,926,Angus Deaton,Male,United States of America,1/1
+2016,Medicine,927,Yoshinori Ohsumi,Male,Japan,1/1
+2016,Physics,928,David J. Thouless,Male,United States of America,1/2
+2016,Physics,929,F. Duncan M. Haldane,Male,United States of America,1/4
+2016,Physics,930,J. Michael Kosterlitz,Male,United States of America,1/4
+2016,Chemistry,931,Jean-Pierre Sauvage,Male,France,1/3
+2016,Chemistry,932,Sir J. Fraser Stoddart,Male,United States of America,1/3
+2016,Chemistry,933,Bernard L. Feringa,Male,Netherlands,1/3
+2016,Peace,934,Juan Manuel Santos,Male,NA,1/1
+2016,Economics,935,Oliver Hart,Male,United States of America,1/2
+2016,Economics,936,Bengt Holmström,Male,United States of America,1/2
+2016,Literature,937,Bob Dylan,Male,NA,1/1
