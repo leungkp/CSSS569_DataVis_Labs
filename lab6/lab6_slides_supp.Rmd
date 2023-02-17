@@ -9,6 +9,7 @@ editor_options:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
 # download packages 
 packages <- c("tidyverse", "geofacet", "statebins", "sf", "tmap", "tigris")
 not_installed <- setdiff(packages, rownames(installed.packages()))
