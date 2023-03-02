@@ -1,0 +1,547 @@
+---
+title: "Lab 9: Latest extension packages for visualization"
+author: "Brian Leung"
+date: "2/26/2021"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: xaringan-themer.css
+    nature:
+      ratio: 21:9
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(fig.width = 12, message = FALSE, warning = FALSE, comment = "", cache = F)
+library(flipbookr)
+library(xaringan)
+library(tidyverse)
+library(gghighlight)
+library(ggridges)
+library(ggforce)
+library(geofacet)
+library(ggchicklet)
+library(gganimate) # install also gifski and png
+library(rayshader)
+library(ggpointdensity)
+
+## Data 
+library(nycflights13)
+library(gapminder)
+data(debates2019)
+library(HistData)
+
+## Theme
+library(hrbrthemes)
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+# library(xaringanthemer)
+# style_mono_accent(base_color = "#23395b")
+```
+
+## Introduction
+
+- Many new extension packages for visualization
+
+--
+
+- `gghighlight`: highlighting specific lines and points while preserving main data
+
+--
+
+- `geofacet`: arranging plots in a grid that resembles original geographical orientation
+
+--
+
+- `ggridges`: visualizing multiple distributions over time or across groups
+
+--
+
+- `ggforce`: annotating areas by group attributes
+
+--
+
+- `ggchicklet`: creating rounded rectangle segmented column charts
+
+--
+
+- `gganimate`: creating animations from ggplot2 objects
+
+--
+
+- `rayshader`: creating 3D objects from ggplot2 objects
+
+--
+
+- `flipbookr` + `xaringan`: making flipbook-style HTML slideshows
+
+---
+
+class: middle, inverse, center
+
+# gghighlight
+
+Examples adopted from [Hiroaki Yutani](https://cran.r-project.org/web/packages/gghighlight/vignettes/gghighlight.html) and [Datanovia](https://www.datanovia.com/en/blog/gghighlight-easy-way-to-highlight-a-ggplot-in-r/)
+
+---
+
+`r chunk_reveal("gghighlight", title = "### gghighlight :: highlighting specific lines and points while preserving main data")`
+
+```{r "gghighlight", include = FALSE}
+ggplot(iris, aes(Sepal.Length, fill = Species)) +
+  geom_histogram(bins = 30) +
+  scale_fill_viridis_d() +
+  gghighlight() + 
+  facet_wrap(~ Species) +
+  scale_y_continuous(expand = c(0, 0)) +
+  theme_minimal()
+```
+
+---
+
+`r chunk_reveal("gghighlight2", omit = "#ROTATE", break_type = "auto", title = "### gghighlight :: highlighting specific lines and points while preserving main data")`
+
+---
+
+`r chunk_reveal("gghighlight2", break_type = "rotate", title = "### gghighlight :: highlighting specific lines and points while preserving main data")`
+
+```{r "gghighlight2", eval = F, echo = F}
+## For each continent, find top 3 countries by avg GDP per cap
+gapminder %>%
+  group_by(country, continent) %>%
+  summarize(mean_gdpPercap = mean(gdpPercap)) %>%
+  group_by(continent) %>%
+  slice_max(mean_gdpPercap, n = 3) ->
+  top_gdppc
+
+ggplot(gapminder, aes(x = year, y = gdpPercap/1000, 
+                      color = country)) +
+  geom_line(show.legend = FALSE) +
+  scale_y_log10() +
+  facet_wrap(~ continent) + 
+  gghighlight(
+    country %in% top_gdppc$country,
+    use_group_by = FALSE,
+    calculate_per_facet = FALSE, #ROTATE
+    calculate_per_facet = TRUE, #ROTATE
+    label_params = list(nudge_y = 2, direction = "x",
+                        label.size = 0, label.padding = 0, 
+                        box.padding = 0.5,
+                        arrow = arrow(length = unit(0.1, "cm"), 
+                                      type = "open"))
+  ) +
+  theme_minimal()
+```
+
+---
+class: middle, inverse, center
+
+# geofacet
+
+Example adopted from [geofacet vignette](https://hafen.github.io/geofacet/)
+
+---
+
+`r chunk_reveal("geofacet", omit = "#ROTATE", break_type = "auto", title = "### geofacet :: arranging plots in a grid that resembles original geographical orientation")`
+
+---
+
+`r chunk_reveal("geofacet", omit = "#OMIT", break_type = "rotate", title = "### geofacet :: arranging plots in a grid that resembles original geographical orientation")`
+
+```{r "geofacet", include = FALSE}
+as_tibble(state_unemp) %>%
+  ggplot(aes(x = year, y = rate)) +
+  facet_geo(~ state, grid = "us_state_grid1") + #OMIT
+  facet_geo(~ state, grid = "us_state_grid1") + #ROTATE
+  facet_geo(~ state, grid = "us_state_grid2") + #ROTATE
+  geom_line(color = "steelblue") +
+  scale_x_continuous(
+    labels = function(x) paste0("'", substr(x, 3, 4))
+  ) +
+  labs(y = "Unemployment Rate (%)", x = "Year")
+```
+
+---
+
+class: middle, inverse, center
+
+# ggridges
+
+Example adopted from [Claus O. Wilke](https://cran.r-project.org/web/packages/ggridges/vignettes/gallery.html)
+
+---
+
+`r chunk_reveal("ggridges", title = "### ggridges :: visualizing multiple distributions over time or across groups")`
+
+```{r ggridges, include = FALSE}
+dark_colors <- c("#D55E00", "#0072B2")
+light_colors <- c("#D55E0050", "#0072B250")
+
+as_tibble(Aus_athletes) %>% 
+  ggplot(aes(x = height, y = sport, fill = sex,
+             color = sex, point_color = sex)) + 
+  geom_density_ridges(
+    jittered_points = TRUE, scale = 1, 
+    rel_min_height = .01, point_shape = "|", 
+    point_size = 3, size = 0.25, 
+    position = position_points_jitter(height = 0) 
+  ) +
+  scale_y_discrete(expand = c(0, 0)) +
+  scale_x_continuous(expand = c(0, 0), name = "height [cm]") +
+  scale_fill_manual(values = light_colors) +
+  scale_color_manual(values = dark_colors) +
+  scale_discrete_manual("point_color", values = dark_colors) +
+  guides(fill = guide_legend(
+    override.aes = list(point_color = NA, fill = light_colors),
+    color = "none", point_color = "none")
+  ) +
+  coord_cartesian(clip = "off") +
+  ggtitle("Height in Australian athletes") +
+  theme_ridges(center = TRUE)
+```
+
+---
+
+class: middle, inverse, center
+
+# ggforce
+
+Example taken from [Edgar Ruiz](https://rviews.rstudio.com/2019/09/19/intro-to-ggforce/)
+
+---
+
+`r chunk_reveal("ggforce", omit = "#ROTATE", break_type = "auto", title = "### ggforce :: annotating areas by group attributes")`
+
+---
+
+`r chunk_reveal("ggforce", omit = "#OMIT", break_type = "rotate", title = "### ggforce :: annotating areas by group attributes")`
+
+```{r ggforce, include = FALSE}
+airports %>%
+  filter(lon < 0, tzone != "\\N") %>%
+  ggplot(aes(x = lon, y = lat, color = tzone)) +
+  geom_point() +
+  geom_mark_rect() + #OMIT
+  geom_mark_rect(aes(label = tzone)) + #ROTATE
+  geom_mark_hull(aes(label = tzone)) + #ROTATE
+  geom_mark_hull(aes(label = tzone, fill = tzone)) + #ROTATE
+  guides(fill = "none", color = "none") +
+  theme_no_axes()
+```
+
+----
+
+`r chunk_reveal("ggforce2", break_type = "non_seq", title = "### ggforce :: annotating areas by group attributes")`
+
+```{r ggforce2, include = FALSE}
+airports %>%
+  filter(lon < 0, tzone != "\\N") %>%
+  ggplot(aes(x = lon, y = lat, color = tzone)) +
+  geom_point() +
+  geom_mark_hull(
+    aes(label = tzone, fill = tzone),
+    expand = unit(3, "mm")                 #BREAK2
+  ) +
+  guides(fill = "none", color = "none") +
+  theme_no_axes() +
+  facet_zoom(x = tzone == "America/Los_Angeles") #BREAK3
+```
+
+---
+
+class: middle, inverse, center
+
+# ggchicklet
+
+Example taken from [Bob Rudis](https://cinc.rud.is/web/packages/ggchicklet/)
+
+---
+
+`r chunk_reveal("ggchicklet1", title = "### ggchicklet :: creating rounded rectangle segmented column charts")`
+
+```{r "ggchicklet1", include = FALSE}
+debates2019 %>%
+  filter(debate_group == 1) %>% 
+  mutate(
+    speaker = fct_reorder(speaker, elapsed, 
+                          .fun = sum, 
+                          .desc = FALSE),
+    topic = fct_other(topic, 
+                      keep = c("Immigration", "Economy", 
+                               "Climate Change", "Gun Control", 
+                               "Healthcare", "Foreign Policy"))
+  ) ->
+debates2019  
+
+topic_colors <- c("Immigration" = "#ae4544",
+                  "Economy" = "#d8cb98",
+                  "Climate Change" = "#a4ad6f",
+                  "Gun Control" = "#cc7c3a",
+                  "Healthcare" = "#436f82",
+                  "Foreign Policy" = "#7c5981",
+                  "Other" = "#cccccc")
+```
+
+---
+
+`r chunk_reveal("ggchicklet2", title = "### ggchicklet :: creating rounded rectangle segmented column charts")`
+
+```{r "ggchicklet2", include = FALSE}
+ggplot(debates2019, aes(x = speaker, y = elapsed, 
+                        group = timestamp, fill = topic)) +
+  geom_chicklet(width = 0.75) +
+  scale_y_continuous(
+    expand = c(0, 0.0625),
+    position = "right",
+    breaks = seq(0, 14, 2),
+    labels = c(0, sprintf("%d min.", seq(2, 14, 2)))
+  ) +
+  scale_fill_manual(
+    name = NULL, values = topic_colors,
+    breaks = setdiff(unique(debates2019$topic), "Other")
+  ) +
+  guides(fill = guide_legend(nrow = 1)) +
+  coord_flip() +
+  theme_ipsum_rc(grid="X") +
+  theme(axis.text.x = element_text(color = "gray60", size = 10)) +
+  theme(legend.position = "top") +
+  labs(
+    x = NULL, y = NULL, fill = NULL,
+    title = "How Long Each Candidate Spoke",
+    subtitle = "Nights 1 & 2 of the June 2019 Democratic Debates",
+    caption = "Each bar segment represents the length of a candidate’s response to a question.\n\nOriginals <https://www.nytimes.com/interactive/2019/admin/100000006581096.embedded.html?>\n<https://www.nytimes.com/interactive/2019/admin/100000006584572.embedded.html?>\nby @nytimes Weiyi Cai, Jason Kao, Jasmine C. Lee, Alicia Parlapiano and Jugal K. Patel\n\n#rstats reproduction by @hrbrmstr"
+  ) 
+```
+
+---
+
+class: middle, inverse, center
+
+# gganimate
+
+Examples taken from [gganimate vignette](https://gganimate.com/index.html) and [Evangeline Reynolds](https://evamaerey.github.io/little_flipbooks_library/about/what_the_flipbook)
+
+---
+`r chunk_reveal("gganimate", title = "### gganimate :: creating animations from ggplot2 objects")`
+
+```{r gganimate, include = FALSE}
+gapminder %>%
+  ggplot(aes(x = gdpPercap, y = lifeExp, 
+             size = pop, colour = country)) +
+  geom_point(alpha = 0.7, show.legend = FALSE) +
+  facet_wrap(~ continent) +
+  scale_x_log10() + 
+  scale_size(range = c(2, 12)) +
+  scale_colour_manual(values = country_colors) +
+  labs(title = 'Year: {frame_time}', 
+       x = 'GDP per capita', 
+       y = 'life expectancy') +
+  transition_time(year) +
+  ease_aes('linear')
+```
+
+---
+
+`r chunk_reveal("gganimate2", title = "### gganimate :: creating animations from ggplot2 objects")`
+
+```{r gganimate2, include = FALSE}
+gapminder %>%
+  group_by(year) %>%
+  arrange(year, desc(gdpPercap)) %>%
+  mutate(rank = row_number()) %>%
+  filter(rank <= 10) ->
+  gdppc_ranked_year
+```
+
+---
+
+`r chunk_reveal("gganimate3", title = "### gganimate :: creating animations from ggplot2 objects")`
+
+```{r gganimate3, include = FALSE}
+gdppc_ranked_year %>%
+  ggplot(aes(xmin = 0, 
+             xmax = gdpPercap / 1000,
+             ymin = rank - 0.45,
+             ymax = rank + 0.45, 
+             fill = continent)) +
+  geom_rect(alpha = 0.8) +
+  facet_wrap(~ year) +
+  geom_text(aes(y = rank, label = country), 
+            x = -5, hjust = "right") +
+  scale_x_continuous(limits = c(-45, 115), 
+                     breaks = seq(0, 100, 25)) +
+  scale_y_reverse() +
+  scale_fill_brewer(palette = "Set3") +
+  labs(y = NULL, x = "GDP per capita (thousands)") +
+  theme(axis.line.x = element_line(),
+        axis.line.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.text.y = element_blank(),
+        panel.background = element_blank()) ->
+  gdppc_plot
+```
+
+---
+
+`r chunk_reveal("gganimate4", title = "### gganimate :: creating animations from ggplot2 objects")`
+
+```{r gganimate4, include = FALSE}
+gdppc_plot +
+  facet_null() +
+  geom_text(aes(label = as.factor(year)), 
+            x = 90 , y = -10, size = 15,
+            check_overlap = TRUE) +
+  transition_time(year) ->
+  gdppc_animate
+
+animate(gdppc_animate, 
+        fps = 20, 
+        duration = 15, 
+        end_pause = 20)
+```
+
+---
+
+class: inverse, center, middle
+
+# rayshader
+
+Example taken from [Tyler Morgan-Wall](https://gist.github.com/tylermorganwall/2f3ca112b9cd13972e02e1062670b735)
+
+---
+
+`r chunk_reveal("rayshader", title = "### rayshader :: translating ggplot2 objects into 3D data visualizations")`
+
+```{r "rayshader", include = FALSE}
+deaths <- Snow.deaths
+head(deaths)
+
+streets <- Snow.streets
+head(streets)
+
+themeval <- theme(panel.border = element_blank(), 
+                  panel.grid.major = element_blank(), 
+                  panel.grid.minor = element_blank(), 
+                  axis.line = element_blank(), 
+                  axis.ticks = element_blank(),
+                  axis.text.x = element_blank(), 
+                  axis.text.y = element_blank(), 
+                  axis.title.x = element_blank(), 
+                  axis.title.y = element_blank(),
+                  legend.key = element_blank(),
+                  plot.margin = unit(c(0.5, 0, 0, 0), "cm"))
+```
+
+---
+
+`r chunk_reveal("rayshader2", title = "### rayshader :: translating ggplot2 objects into 3D data visualizations")`
+
+```{r "rayshader2", include = FALSE}
+ggplot() + 
+  geom_path(data = streets, aes(x = x, y = y, group = street), 
+            color = "grey50") +
+  geom_pointdensity(data = deaths, aes(x = x, y = y), 
+                    size = 1, adjust = 0.1) +
+  coord_fixed() + 
+  scale_color_viridis_c() +
+  theme_bw() +
+  themeval ->
+js
+
+ggplot() + 
+  geom_path(data = streets, aes(x = x, y = y, group = street), 
+            color = "white") +
+  geom_pointdensity(data = deaths, aes(x = x, y = y), 
+                    size = 1, adjust = 0.1) +
+  coord_fixed() +
+  scale_color_viridis_c() +
+  theme_bw() +
+  themeval ->
+js2 
+```
+
+---
+
+`r chunk_reveal("rayshader3", title = "### rayshader :: translating ggplot2 objects into 3D data visualizations")`
+
+```{r "rayshader3", include = FALSE}
+plot_gg(
+  list(js,js2),
+  multicore = TRUE,
+  raytrace = TRUE,
+  height_aes = "color",
+  shadow_intensity = 0.3,
+  width = 8, height = 7,
+  soliddepth = -100,
+  save_height_matrix = TRUE,
+  background = "#f5e9dc",
+  shadowcolor= "#4f463c",
+  windowsize = c(1000, 1000),
+  preview = TRUE
+  ) ->
+ggheight
+```
+
+---
+
+### A bit more code to generate a .gif with `gifski`
+  
+```{r "rayshader4", eval = F}
+# ## Add label
+# render_label(ggheight, "Water Pump", x=1110,y=1020,z=390, textsize = 2)
+# 
+# ## Generate animation
+# for(i in 1:360) {
+#   render_camera(phi=20,theta=45+i,fov=70,zoom=0.25)
+#   render_depth(focus=0.77,
+#                title_text = "John Snow's London cholera map, # of nearest neighbors",
+#                title_size = 35,
+#                filename = glue::glue("snow{i}"))
+# }
+# 
+# ## Generate gif
+# files <- fs::dir_ls("JohnSnow/")
+# num <- as.numeric(str_extract(files, "\\d+"))
+# frame <- tibble(files, num) %>% arrange(num)
+# gifski::gifski(frame$files, gif_file = "snow.gif", delay = 0.04, loop = TRUE, progress = TRUE)
+```
+
+---
+
+### Final animation of London cholera clusters by John Snow
+  
+<p align="center">
+  <img src="snow.gif" alt="animated" />
+</p>
+  
+---
+
+### Lastly, how do I write these slides?
+  
+- `flipbookr` package by [Evangeline Reynolds](https://github.com/EvaMaeRey/flipbookr): "side-by-side, aligned, incremental code-output evolution"
+
+--
+
+- Together with `xaringan` package by [Yihui Xie](https://github.com/yihui/xaringan) for HTML slideshows
+
+--
+
+- Take a look at my source `.Rmd`, or [vignettes by Reynolds](https://evamaerey.github.io/little_flipbooks_library/about/what_the_flipbook) if interested
+
+---
+
+class: middle, inverse, center
+
+# Thank you!
+
+
+```{css, eval = TRUE, echo = FALSE}
+.remark-code{line-height: 1.5; font-size: 90%}
+```
+
+

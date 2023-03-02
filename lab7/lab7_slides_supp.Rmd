@@ -128,6 +128,8 @@ migrat2010_hclust <-
   dist() %>%
   hclust(method = "ward.D")
 
+plot(migrat2010_hclust)
+
 # check the order
 countryOrder <- migrat2010_hclust$order
 names(countryOrder) <- migrat2010_hclust$labels
